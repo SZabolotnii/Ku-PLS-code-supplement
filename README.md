@@ -2,7 +2,7 @@
 
 Machine-checked deterministic core for the paper
 
-> **Momentless Functional Partial Least Squares: A Characteristic-Function Operator with Moment-Free Conjugate-Gradient Inference**
+> **Moment-Free Inference for Functional Partial Least Squares**
 > Serhii Zabolotnii (ORCID 0000-0003-0242-2234)
 
 This repository holds the **formal verification** half of the paper's artifacts. The
