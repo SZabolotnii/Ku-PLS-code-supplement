@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\caption{Yield-curve shocks and equity returns, 2016-08-16 to 2026-08-13 (2494 trading days). $X_t$ is the curve of daily yield changes across eleven maturities (1M--30Y) in basis points; $Y_t$ is the S\&P~500 daily log return in percent. Both statistics test $H_0:\beta=0$ with $m=3$ conjugate-gradient steps; $p$-values come from each statistic's own plug-in weighted-$\chi^2$ spectrum. Hill tail-index estimates use the largest $5\%$ of observations. BCT require a tail index above~4. $^{*}$, $^{**}$, $^{***}$ denote $p<0.1$, $0.05$, $0.01$.}
+\label{tab:empirical}
+\begin{tabular}{l r rr rr}
+\toprule
+& & \multicolumn{2}{c}{$T_n$ (moment)} & \multicolumn{2}{c}{$S_n$ (ECF)} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+Panel & $n$ & statistic & $p$ & statistic & $p$ \\
+\midrule
+A. $Y_t$ on $X_t$ & 2494 & 7865.8 & $0.0023^{***}$ & 2.5381 & $0.0000^{***}$ \\
+B. $Y_{t+1}$ on $X_t$ & 2493 & 2214.9 & $0.0615^{*}$ & 0.9419 & $0.0021^{***}$ \\
+\addlinespace
+\quad B, excluding 2020 & 2242 & 973.8 & $0.0837^{*}$ & 1.1124 & $0.0006^{***}$ \\
+\midrule
+\multicolumn{6}{l}{\emph{Hill tail-index estimates} $\hat\alpha$ (top $5\%$):}\\
+\multicolumn{6}{l}{\quad $\lVert X_t\rVert$: 3.08\qquad $|Y_t|$: 2.60}\\
+\bottomrule
+\end{tabular}
+\end{table}

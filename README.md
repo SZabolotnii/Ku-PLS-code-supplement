@@ -1,14 +1,34 @@
-# Ku-PLS — Lean 4 formal-verification supplement
+# Ku-PLS — code supplement
 
-Machine-checked deterministic core for the paper
+Everything needed to check the paper
 
 > **Moment-Free Inference for Functional Partial Least Squares**
 > Serhii Zabolotnii (ORCID 0000-0003-0242-2234)
 
-This repository holds the **formal verification** half of the paper's artifacts. The
-Monte Carlo study of Section 10 and the empirical application of Section 11 are
-replicated separately, at
-[SZabolotnii/Ku-PLS-replication](https://github.com/SZabolotnii/Ku-PLS-replication).
+| Directory | Contents |
+|---|---|
+| [`KuPLS/`](KuPLS/) | Lean 4 / Mathlib proofs of the deterministic algebraic core, sorry-free with an axiom audit |
+| [`replication/`](replication/) | Python replication of the Monte Carlo study (§10) and the empirical application (§11); regenerates both tables from source |
+
+The two halves are independent: the Lean development needs `elan`/`lake`, the
+replication package needs only `numpy` and `scipy`.
+
+## Replication in one command
+
+```bash
+cd replication && pip install -r requirements.txt && ./run_all.sh
+```
+
+Regenerates Table 1 (Monte Carlo) and Table 2 (Treasury yield curves against
+S&P 500 returns, pulled live from FRED with no API key). Both tables are emitted
+programmatically — no number in the paper is transcribed by hand. Seeding is
+explicit, so two fresh processes give bit-identical output.
+
+Details and the full account of what the two studies found, including the parts
+that do not favour the paper's proposal, are in
+[`replication/README.md`](replication/README.md).
+
+## Lean development
 
 This Lean 4 / Mathlib development certifies, sorry-free, the *deterministic algebraic* facts on which the paper's operator theory rests: the empirical-characteristic-function (ECF) Gram operator is symmetric and positive semidefinite, and the conjugate-gradient / Krylov projection identities that carry the functional-PLS machinery over to that operator. The probabilistic asymptotics (concentration, the weighted-$\chi^2$ limit) are classical and live in the manuscript, not here.
 
