@@ -5,6 +5,11 @@ Machine-checked deterministic core for the paper
 > **Momentless Functional Partial Least Squares: A Characteristic-Function Operator with Moment-Free Conjugate-Gradient Inference**
 > Serhii Zabolotnii (ORCID 0000-0003-0242-2234)
 
+This repository holds the **formal verification** half of the paper's artifacts. The
+Monte Carlo study of Section 10 and the empirical application of Section 11 are
+replicated separately, at
+[SZabolotnii/Ku-PLS-replication](https://github.com/SZabolotnii/Ku-PLS-replication).
+
 This Lean 4 / Mathlib development certifies, sorry-free, the *deterministic algebraic* facts on which the paper's operator theory rests: the empirical-characteristic-function (ECF) Gram operator is symmetric and positive semidefinite, and the conjugate-gradient / Krylov projection identities that carry the functional-PLS machinery over to that operator. The probabilistic asymptotics (concentration, the weighted-$\chi^2$ limit) are classical and live in the manuscript, not here.
 
 ## What is certified
