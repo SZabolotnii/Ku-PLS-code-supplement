@@ -95,6 +95,11 @@ Findings:
   claim it is — but BCT need a tail index above 4, and the fourth moment is not
   there. Standard daily financial data sits in exactly the gap the method
   occupies.
+- Sample excess kurtosis, recorded under `kurtosis` in `empirical.json`:
+  `‖X_t‖` = 13.627, `Y_t` = 16.631. Note which series each is taken on — the
+  tail index is estimated on `|Y_t|`, the kurtosis on the signed `Y_t`, and the
+  paper quotes them that way. At a tail index near 3 these are sample versions
+  of a population quantity that does not exist, which is the point.
 - Panel A (contemporaneous): both statistics reject. The ECF construction is not
   inert on real data.
 - Panel B (predictive): they disagree — `T_n` p = 0.062, `S_n` p = 0.0021,

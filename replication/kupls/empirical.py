@@ -142,6 +142,19 @@ def main():
               "  ".join(f"top {a}: {b:.2f}" for a, b in tails[name].items()))
     print("  (BCT require E||X||^4 < inf, i.e. a tail index above 4.)\n")
 
+    # Sample excess kurtosis, quoted in the paper next to the tail indices.
+    # Note the arguments: the tail index is estimated on |Y_t|, the kurtosis on
+    # the signed Y_t, and the paper states them that way. With a tail index
+    # near 3 these are sample versions of a population quantity that does not
+    # exist, which is the point being made.
+    kurtosis = {name: round(float(st.kurtosis(v, fisher=True)), 3)
+                for name, v in (("||X_t||", np.linalg.norm(dX, axis=1)),
+                                ("Y_t", Y))}
+    print("Sample excess kurtosis (population value undefined at these tails):")
+    for name, k in kurtosis.items():
+        print(f"  {name:9s} {k:.2f}")
+    print()
+
     Xp, Yp = dX[:-1], Y[1:]
     print("Tests of H0: beta = 0")
     panels = [test_panel(dX, Y, 3, rng, "A contemporaneous"),
@@ -170,8 +183,8 @@ def main():
 
     pathlib.Path("results").mkdir(exist_ok=True)
     json.dump(dict(n=int(n), start=str(dates[0]), end=str(dates[-1]),
-                   tails=tails, panels=panels, channels=channels,
-                   ex2020=ex2020),
+                   tails=tails, kurtosis=kurtosis, panels=panels,
+                   channels=channels, ex2020=ex2020),
               open("results/empirical.json", "w"), indent=2)
     print("\nwrote results/empirical.json")
 
