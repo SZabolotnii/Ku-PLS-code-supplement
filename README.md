@@ -1,36 +1,54 @@
 # Ku-PLS — code supplement
 
-Everything needed to check the paper
+Everything needed to check two papers on functional partial least squares under
+weak moment conditions, by Serhii Zabolotnii (ORCID 0000-0003-0242-2234).
 
-> **Moment-Free Inference for Functional Partial Least Squares**
-> Serhii Zabolotnii (ORCID 0000-0003-0242-2234)
+| Directory | Belongs to | Contents |
+|---|---|---|
+| [`KuPLS/`](KuPLS/) | paper 1 | Lean 4 / Mathlib proofs of the deterministic algebraic core, sorry-free with an axiom audit |
+| [`replication/`](replication/) | paper 1 | Python replication of the Monte Carlo study and the empirical application; regenerates both of its tables from source |
+| [`two-moments/`](two-moments/) | paper 2 | Python replication of the simulations, the two applications and the checks behind every claim |
 
-| Directory | Contents |
-|---|---|
-| [`KuPLS/`](KuPLS/) | Lean 4 / Mathlib proofs of the deterministic algebraic core, sorry-free with an axiom audit |
-| [`replication/`](replication/) | Python replication of the Monte Carlo study (§10) and the empirical application (§11); regenerates both tables from source |
+> **Paper 1 — *Moment-Free Inference for Functional Partial Least Squares*.**
+> An empirical-characteristic-function operator, so that a specification test
+> needs no moment of the predictor at all.
+>
+> **Paper 2 — *Functional Partial Least Squares under Two Moments*.**
+> A reweighted family $A_\theta=\mathbb E[\lVert X\rVert^{-\theta}X\otimes X]$
+> that contains the second-moment baseline at $\theta=0$ and the spatial-sign
+> covariance at $\theta=2$, and a rule for choosing $\theta$ from the data.
 
-The two halves are independent: the Lean development needs `elan`/`lake`, the
-replication package needs only `numpy` and `scipy`.
+The three parts are independent. The Lean development needs `elan`/`lake`; each
+replication package needs only `numpy` and `scipy`, and neither imports the
+other.
 
-## Replication in one command
+## Replication
+
+Paper 2 (see [`two-moments/README.md`](two-moments/README.md) for the map from
+each table to its script):
+
+```bash
+cd two-moments && pip install -r requirements.txt && ./run_all.sh
+git diff --stat results/
+```
+
+Paper 1 (details in [`replication/README.md`](replication/README.md), including
+the parts of that study which do not favour its own proposal):
 
 ```bash
 cd replication && pip install -r requirements.txt && ./run_all.sh
 ```
 
-Regenerates Table 1 (Monte Carlo) and Table 2 (Treasury yield curves against
-S&P 500 returns, pulled live from FRED with no API key). Both tables are emitted
-programmatically — no number in the paper is transcribed by hand. Seeding is
-explicit, so two fresh processes give bit-identical output.
+Both packages ship their stored output, so re-running is a diff rather than a
+comparison by eye, and both fix their seeds explicitly: two fresh processes give
+bit-identical output. No number in either paper is transcribed by hand.
 
-Details and the full account of what the two studies found, including the parts
-that do not favour the paper's proposal, are in
-[`replication/README.md`](replication/README.md).
+Data in both packages comes from **FRED** (Federal Reserve Bank of St. Louis)
+over plain HTTPS — no key, no subscription, no redistribution restriction.
 
 ## Lean development
 
-This Lean 4 / Mathlib development certifies, sorry-free, the *deterministic algebraic* facts on which the paper's operator theory rests: the empirical-characteristic-function (ECF) Gram operator is symmetric and positive semidefinite, and the conjugate-gradient / Krylov projection identities that carry the functional-PLS machinery over to that operator. The probabilistic asymptotics (concentration, the weighted-$\chi^2$ limit) are classical and live in the manuscript, not here.
+This Lean 4 / Mathlib development certifies, sorry-free, the *deterministic algebraic* facts on which paper 1's operator theory rests: the empirical-characteristic-function (ECF) Gram operator is symmetric and positive semidefinite, and the conjugate-gradient / Krylov projection identities that carry the functional-PLS machinery over to that operator. The probabilistic asymptotics (concentration, the weighted-$\chi^2$ limit) are classical and live in the manuscript, not here.
 
 ## What is certified
 
@@ -70,15 +88,16 @@ lake env lean KuPLS/Audit.lean   # reproduces the axiom audit
 ## Layout
 
 ```
-lean/
-├── KuPLS.lean              -- root import
-├── KuPLS/Core.lean         -- ECF Gram: Hermitian, quadratic form, PSD crux
-├── KuPLS/Krylov.lean       -- CG/Krylov projection identities
-├── KuPLS/Audit.lean        -- #print axioms for all six lemmas
-├── lakefile.lean
-├── lean-toolchain
-├── lake-manifest.json
-└── AUDIT.txt               -- captured axiom-audit transcript
+KuPLS.lean              -- root import
+KuPLS/Core.lean         -- ECF Gram: Hermitian, quadratic form, PSD crux
+KuPLS/Krylov.lean       -- CG/Krylov projection identities
+KuPLS/Audit.lean        -- #print axioms for all six lemmas
+lakefile.lean
+lean-toolchain
+lake-manifest.json
+AUDIT.txt               -- captured axiom-audit transcript
+replication/            -- paper 1: Monte Carlo + empirical application
+two-moments/            -- paper 2: code, gates, results, data
 ```
 
 ## License

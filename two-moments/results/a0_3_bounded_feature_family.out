@@ -1,0 +1,96 @@
+==============================================================================
+1. EXACTNESS OF THE NORMAL EQUATION   ||A_w b - r_w|| / ||r_w||
+   (Monte Carlo; a genuine bridge failure would NOT shrink with n)
+==============================================================================
+  ellip   scale=1    | th=0.0:4.72e-04 th=0.5:3.94e-04 th=1.0:3.67e-04 th=1.5:5.35e-04 th=2.0:9.98e-04 | CF:7.51e-05
+  ellip   scale=3    | th=0.0:1.60e-04 th=0.5:2.28e-04 th=1.0:3.31e-04 th=1.5:4.69e-04 th=2.0:6.54e-04 | CF:3.82e-04
+  indep   scale=1    | th=0.0:4.85e-04 th=0.5:4.95e-04 th=1.0:6.24e-04 th=1.5:8.60e-04 th=2.0:1.24e-03 | CF:5.17e-04
+  indep   scale=3    | th=0.0:1.69e-04 th=0.5:1.70e-04 th=1.0:2.11e-04 th=1.5:3.39e-04 th=2.0:5.59e-04 | CF:9.09e-05
+  stable  scale=1    | th=0.0:7.76e-05 th=0.5:3.25e-04 th=1.0:4.30e-04 th=1.5:6.25e-04 th=2.0:9.99e-04 | CF:2.19e-04
+  stable  scale=3    | th=0.0:6.25e-05 th=0.5:1.20e-04 th=1.0:2.13e-04 th=1.5:3.04e-04 th=2.0:4.13e-04 | CF:1.00e-04
+  -> every route is exact by construction; none is a Lemma 3.3.
+
+==============================================================================
+2. RANK / DIMENSION COUNT   (the one-line check that kills a false
+   factorisation before any numerics)
+==============================================================================
+  L = |supp pi| =   4 : rank(C*C) =  8  (<= min(d, 2L) = 8),  d = 12
+  L = |supp pi| =  16 : rank(C*C) = 12  (<= min(d, 2L) = 12),  d = 12
+  L = |supp pi| =  64 : rank(C*C) = 12  (<= min(d, 2L) = 12),  d = 12
+  rank(A_theta) = 12 for every theta (full, = d = 12); it never depends on a design choice.
+  -> C*C is rank-limited by supp pi (real form: rank <= min(d, 2|supp pi|)).
+     A_theta is not.  The frequency grid is a THIRD tuning object
+     the spatial-sign route does not have.
+
+==============================================================================
+3. SPECTRUM DISTORTION -- do A_theta and K share eigenvectors, and
+   how are the eigenvalues bent?  This IS the source condition.
+==============================================================================
+   NOTE ON DESIGN: at slow eigenvalue decay the top eigenvalues are
+   nearly tied and the sample eigenVECTORS are unstable for reasons
+   that have nothing to do with theta.  Decay is therefore fixed at
+   j^-1.5 (well separated) and n raised, so the angle column measures
+   geometry rather than spacing.
+
+  law=ellip  eigenvalue decay j^-1.5   [elliptical: population angle is 0 BY SYMMETRY]
+    theta  max princ. angle (deg), top-3   log-log slope of eigenvalues
+      0.0                          0.000                         -3.006
+      0.5                          0.345                         -2.822
+      1.0                          0.445                         -2.624
+      1.5                          0.485                         -2.414
+      2.0                          0.508                         -2.197
+        K                          0.000                         -3.006
+
+  law=indep  eigenvalue decay j^-1.5   [independent symmetric coords: population angle also 0]
+    theta  max princ. angle (deg), top-3   log-log slope of eigenvalues
+      0.0                          0.000                         -3.014
+      0.5                          0.016                         -2.691
+      1.0                          0.028                         -2.421
+      1.5                          0.042                         -2.181
+      2.0                          0.054                         -1.961
+        K                          0.000                         -3.014
+
+  law=skew  eigenvalue decay j^-1.5   [skewed + non-diagonal mixing: nothing forces 0]
+    theta  max princ. angle (deg), top-3   log-log slope of eigenvalues
+      0.0                          0.000                         -2.970
+      0.5                          0.443                         -2.615
+      1.0                          1.590                         -2.371
+      1.5                          3.491                         -2.214
+      2.0                          6.037                         -2.099
+        K                          0.000                         -2.970
+
+  -> read the angle column: near 0 means A_theta inverts the SAME
+     directions as K, so BCT's source condition transfers with a
+     changed exponent (the slope column), not a changed geometry.
+
+==============================================================================
+4. ILL-POSEDNESS COST   cond(.) relative to K
+   The CF route composes the covariance twice (c(u) = -i grad phi(u)
+   is a Sigma-image for elliptical laws), so C*C ~ Sigma W Sigma.
+   If so it SQUARES the ill-posedness and pays a rate penalty.
+==============================================================================
+  decay j^-0.5  cond(K)= 1.191e+01 | th=1:    0.80x th=2:    0.65x | CF:  2.24e+01x  (cond(K)^2/cond(K) = 1.19e+01)
+  decay j^-1    cond(K)= 1.405e+02 | th=1:    0.63x th=2:    0.39x | CF:  1.46e+02x  (cond(K)^2/cond(K) = 1.41e+02)
+  decay j^-1.5  cond(K)= 1.815e+03 | th=1:    0.48x th=2:    0.21x | CF:  7.83e+02x  (cond(K)^2/cond(K) = 1.82e+03)
+  -> if the CF column tracks the last column, C*C is quadratic in the
+     covariance: the CF route is ill-posed to the SQUARE of BCT's.
+
+==============================================================================
+5. MOMENT ACCOUNTING, MEASURED   -- spread of sqrt(n)||Ahat - A||
+   across replications at tail index 3 (E||X||^2 < inf, E||X||^4 = inf).
+   A route with a genuine sqrt(n) CLT has a STABLE spread; one whose
+   CLT fails shows a heavy right tail that grows with n.
+==============================================================================
+   building the population reference (n = 4,000,000) ...
+   median of sqrt(n)||Ahat_theta - A_theta||_F  --  BOUNDED in n <=> sqrt(n) CLT
+    theta      n=2000     n=8000    n=32000    n32/n2   q99 n32/n2
+      0.0     15.9423    19.7619    26.4752      1.66         2.51
+      0.5      4.1684     4.5987     4.8364      1.16         1.17
+      1.0      1.6885     1.7191     1.7729      1.05         0.98
+      1.5      1.0549     1.0495     1.0524      1.00         1.01
+      2.0      0.8162     0.8206     0.8236      1.01         1.00
+   -> growth ~ 1 is a CLT.  theta = 0 needs E||X||^4 and does not have
+      it at tail index 3, so its column must grow; theta >= 1 needs
+      only E||X||^{4-2theta} <= E||X||^2, which the law does have.
+
+wrote two-moments/results/a0_3_bounded_feature_family.json

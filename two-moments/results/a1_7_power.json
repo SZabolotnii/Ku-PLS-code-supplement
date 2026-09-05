@@ -1,0 +1,108 @@
+{
+  "R": 500,
+  "c": 0.7162800493009989,
+  "n": 1000,
+  "level": 0.05,
+  "rows": {
+    "th0.0_idx1.2": {
+      "size": 0.018,
+      "power_raw": 0.28,
+      "power_sc": 0.902
+    },
+    "th0.0_idx1.5": {
+      "size": 0.038,
+      "power_raw": 0.548,
+      "power_sc": 0.932
+    },
+    "th0.0_idx1.8": {
+      "size": 0.038,
+      "power_raw": 0.688,
+      "power_sc": 0.874
+    },
+    "th0.0_idx2.5": {
+      "size": 0.038,
+      "power_raw": 0.676,
+      "power_sc": 0.746
+    },
+    "th0.0_idx4.0": {
+      "size": 0.054,
+      "power_raw": 0.494,
+      "power_sc": 0.492
+    },
+    "th0.5_idx1.2": {
+      "size": 0.044,
+      "power_raw": 0.58,
+      "power_sc": 1.0
+    },
+    "th0.5_idx1.5": {
+      "size": 0.038,
+      "power_raw": 0.822,
+      "power_sc": 1.0
+    },
+    "th0.5_idx1.8": {
+      "size": 0.036,
+      "power_raw": 0.862,
+      "power_sc": 0.956
+    },
+    "th0.5_idx2.5": {
+      "size": 0.05,
+      "power_raw": 0.716,
+      "power_sc": 0.734
+    },
+    "th0.5_idx4.0": {
+      "size": 0.058,
+      "power_raw": 0.488,
+      "power_sc": 0.442
+    },
+    "th1.0_idx1.2": {
+      "size": 0.054,
+      "power_raw": 0.936,
+      "power_sc": 0.998
+    },
+    "th1.0_idx1.5": {
+      "size": 0.038,
+      "power_raw": 0.912,
+      "power_sc": 0.944
+    },
+    "th1.0_idx1.8": {
+      "size": 0.058,
+      "power_raw": 0.774,
+      "power_sc": 0.764
+    },
+    "th1.0_idx2.5": {
+      "size": 0.042,
+      "power_raw": 0.556,
+      "power_sc": 0.582
+    },
+    "th1.0_idx4.0": {
+      "size": 0.044,
+      "power_raw": 0.36,
+      "power_sc": 0.402
+    },
+    "th2.0_idx1.2": {
+      "size": 0.042,
+      "power_raw": 0.376,
+      "power_sc": 0.398
+    },
+    "th2.0_idx1.5": {
+      "size": 0.056,
+      "power_raw": 0.322,
+      "power_sc": 0.268
+    },
+    "th2.0_idx1.8": {
+      "size": 0.078,
+      "power_raw": 0.306,
+      "power_sc": 0.286
+    },
+    "th2.0_idx2.5": {
+      "size": 0.06,
+      "power_raw": 0.26,
+      "power_sc": 0.222
+    },
+    "th2.0_idx4.0": {
+      "size": 0.064,
+      "power_raw": 0.242,
+      "power_sc": 0.224
+    }
+  }
+}

@@ -1,0 +1,53 @@
+============================================================================================
+SECTION 1 -- empirical size, nominal 5%, n = 1000, R = 600
+   LEFT  block: the theorem's regime, stopping at ||Rhat|| <= n^{-1/2}/log n
+   RIGHT block: the practical regime, fixed m = 3 (OUTSIDE Theorem 6')
+============================================================================================
+   s.e. = 0.0089, tolerance [0.032, 0.068], a_n = 4.58e-03
+     theta |  idx 2.5  idx 3.0  idx 5.0  |  idx 2.5  idx 3.0  idx 5.0
+   ------------------------------------------------------------------
+    0.0(BCT)|   0.052    0.043    0.052  |   0.048    0.040    0.042 
+    0.5     |   0.052    0.050    0.062  |   0.045    0.045    0.057 
+    1.0     |   0.060    0.048    0.067  |   0.052    0.040    0.065 
+    1.5     |   0.060    0.053    0.045  |   0.050    0.053    0.037 
+    2.0(sgn)|   0.052    0.047    0.043  |   0.043    0.047    0.067 
+   * = outside +-2 s.e. of nominal
+
+============================================================================================
+SECTION 2 -- the prediction: theta = 1 valid where BCT's WEIGHTS DO NOT EXIST
+   At predictor tail index < 2, E||X||^2 = inf, so tr V_0 = sigma^2 E||X||^2
+   is infinite and BCT's limit law has no weights.  tr V_1 = sigma^2 is finite.
+   Theorem 6' never uses Ahat -> A, so theta = 1 should hold its level anyway.
+============================================================================================
+     theta |   idx 1.2   idx 1.5   idx 1.8   idx 2.5          tr Vhat behaviour
+   ------------------------------------------------------------------------------
+    0.0(BCT)|    0.015*    0.028*    0.015*    0.038    tr Vhat @1.2 =    97.04
+    1.0     |    0.057     0.062     0.037     0.052    tr Vhat @1.2 =     0.25
+    2.0(sgn)|    0.077*    0.068*    0.060     0.050    tr Vhat @1.2 =     0.11
+   * = outside +-2 s.e. of nominal
+
+   tr Vhat at n = 1000 across index (median): a column that GROWS without
+   settling is the signature of an infinite population trace.
+     theta = 0:    97.037     14.412      4.697      1.566
+     theta = 1:     0.249      0.251      0.250      0.249
+     theta = 2:     0.112      0.127      0.141      0.165
+
+============================================================================================
+SECTION 3 -- local asymptotic power: what lowering the moment costs
+   Limit under beta = b + h/sqrt(n) is ||G_theta + A_theta h||^2.
+   Population A_theta and V_theta from n = 2e6; power by 200k draws of the limit.
+============================================================================================
+      direction   ||h|| |    th=0.0    th=0.5    th=1.0    th=1.5    th=2.0
+        leading     2.0 |     1.000     1.000     1.000     0.995     0.955
+        leading     6.0 |     1.000     1.000     1.000     1.000     1.000
+       trailing     2.0 |     0.050     0.051     0.049     0.049     0.050
+       trailing     6.0 |     0.050     0.049     0.050     0.051     0.050
+    beta itself     2.0 |     1.000     1.000     1.000     0.993     0.943
+    beta itself     6.0 |     1.000     1.000     1.000     1.000     1.000
+
+   -> read across each row: this is the price of theta, in power, at a
+      tail index where BOTH tests are valid.  A theta that wins on the
+      leading direction and loses on the trailing one is trading, not
+      dominating, and the paper must say which.
+
+wrote two-moments/results/a1_7_verify.json

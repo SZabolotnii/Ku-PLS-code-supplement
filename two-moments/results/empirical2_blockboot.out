@@ -1,0 +1,15 @@
+Panel C -- contemporaneous, Y = VIX log change, n = 4396, B = 999, mean block = 16
+H0 imposed by resampling X-blocks and Y-blocks with INDEPENDENT starts:
+each series keeps its serial dependence, the cross-relation is destroyed.
+
+     theta    statistic    boot p     boot 95%     asym 95%   asym/boot
+     0.0 (BCT)    2.204e+05    0.0010    7.249e+04    1.954e+06      26.95x
+     0.5               1466    0.1181         1882         7364       3.91x
+     1.0              299.2    0.0000        151.5        150.6       0.99x
+
+   READ.  'boot p' is the honest p-value under serial dependence.
+   'asym/boot' is how far the plug-in weighted-chi^2 critical value sits
+   above the one a dependence-respecting null actually needs: a number
+   well above 1 is the conservatism, measured on data.
+
+wrote two-moments/results/empirical2_blockboot.json

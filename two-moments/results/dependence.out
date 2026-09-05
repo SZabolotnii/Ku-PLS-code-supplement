@@ -1,0 +1,36 @@
+STEP 1 -- SIZE OF THE TEST AT FIXED theta UNDER SERIAL DEPENDENCE
+   n = 1000, R = 500, nominal 5%, s.e. 0.0097, tolerance [0.031, 0.069]
+   phi = 0.3 matches the Treasury curve, phi = 0.6 the CP curve.
+
+     theta   index |    phi=0.0    phi=0.3    phi=0.6
+   -------------------------------------------------------
+       0.0     1.5 |     0.022*     0.034      0.026*
+       0.0     2.5 |     0.050      0.058      0.054 
+       0.0     4.0 |     0.034      0.040      0.044 
+       0.5     1.5 |     0.034      0.064      0.036 
+       0.5     2.5 |     0.058      0.064      0.064 
+       0.5     4.0 |     0.040      0.058      0.068 
+       1.0     1.5 |     0.052      0.048      0.052 
+       1.0     2.5 |     0.042      0.062      0.052 
+       1.0     4.0 |     0.064      0.056      0.046 
+   * = outside +-2 s.e. of nominal
+
+STEP 2 -- kappa RECALIBRATED UNDER DEPENDENCE, at index 4.0
+       phi       n   median R_n(0)   kappa = p95
+      0.00    1000          0.0458        0.1336
+      0.30    2494          0.0298        0.0966
+      0.60    4396          0.0213        0.0777
+   (the i.i.d. value used before was 0.1451 at n = 1000)
+
+STEP 3 -- SIZE AND POWER OF THE RULE UNDER DEPENDENCE (phi = 0.6),
+   with kappa = 0.0777 from step 2
+
+     index      size     power   median th-hat   th-hat mean
+       1.2    0.026*     0.930            0.75         0.659
+       1.5    0.048      0.950            0.50         0.561
+       1.8    0.052      0.878            0.50         0.463
+       2.5    0.062      0.700            0.25         0.272
+       4.0    0.070*     0.458            0.00         0.055
+   * = outside +-2 s.e. of nominal
+
+wrote two-moments/results/dependence.json

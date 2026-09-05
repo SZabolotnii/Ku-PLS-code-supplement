@@ -1,0 +1,54 @@
+AA financial commercial-paper curve x NASDAQ, 1998-01-05 .. 2026-07-02, n = 4396
+   days with dX_t = 0 exactly (curve unchanged): 15 (0.3%) -- these carry no direction, and the
+   zero-norm convention t_theta(0) := 0 drops them from the score.
+
+1. TAIL INDEX OF ||dX_t||, and is it one episode?
+   full sample                        n= 4396  point=1.597  95% [1.336, 2.171]   straddles 2
+   excluding 2007-2009                n= 3701  point=1.830  95% [1.442, 2.372]   straddles 2
+   excluding 2008 alone               n= 4180  point=1.879  95% [1.537, 2.400]   straddles 2
+   2010 onward only                   n= 1456  point=1.694  95% [1.186, 2.818]   straddles 2
+   pre-2007 only                      n= 2245  point=1.880  95% [1.522, 2.503]   straddles 2
+   responses, for reference -- these must stay ABOVE 2 for theta=1 to help,
+   since tr V_1 = E eps^2 is the one moment the theorem does need:
+   |Y_t| NASDAQ return                n= 4396  point=2.573  95% [2.259, 3.216]
+   |Y_t| VIX log change               n= 4396  point=2.553  95% [2.206, 2.992]
+
+2. DOES tr Vhat SETTLE?  Theorem 6' says tr V_0 = E[eps^2 ||X||^2] has
+   nothing to converge to when the index is below 2, while tr V_1 = E eps^2
+   does.  Expanding subsamples, H0: beta = 0, Panel A.
+         n      tr V(th=0.0)     tr V(th=0.5)     tr V(th=1.0)
+       879              1917             74.8            5.802
+      1758              1676            53.15            4.466
+      2637              1265            40.75            3.344
+      3516              4984            70.23            3.387
+      4396         5.559e+04            213.5            3.962
+   -> a column that keeps climbing has no population limit; one that
+      settles does.  This is the diagnostic, on real data.
+
+3. THE TESTS, H0: beta = 0, under the overfitting stopping rule
+
+   Panel A  contemporaneous, Y = equity
+     theta    m     statistic       crit 5%      tr Vhat        p
+     0.0 (BCT)    5     6.304e+04     1.959e+05    5.559e+04   0.2848
+     0.5          3         176.4           631        213.5   0.4180
+     1.0          3         1.427         9.335        3.962   0.8686
+
+   Panel B  predictive,      Y = equity
+     theta    m     statistic       crit 5%      tr Vhat        p
+     0.0 (BCT)    5          4621      2.17e+04         8496   0.6765
+     0.5          4          31.7         237.1        100.2   0.8909
+     1.0          3         2.025         8.951        3.964   0.7650
+
+   Panel C  contemporaneous, Y = vol   
+     theta    m     statistic       crit 5%      tr Vhat        p
+     0.0 (BCT)    6     2.204e+05      1.95e+06    5.566e+05   0.5965
+     0.5          5          1466          7268         2435   0.5400
+     1.0          4         299.2         150.2        64.69   0.0013
+
+   Panel D  predictive,      Y = vol   
+     theta    m     statistic       crit 5%      tr Vhat        p
+     0.0 (BCT)    5     6.395e+04     2.482e+05    8.786e+04   0.4889
+     0.5          5         703.9          2641         1104   0.6260
+     1.0          4         34.58         142.6        64.35   0.7458
+
+wrote two-moments/results/empirical2_cp.json

@@ -1,0 +1,53 @@
+========================================================================================
+PART 1 -- is the estimation comparison capable of showing a moment effect?
+   ||mean(betahat) - beta||  is regularisation BIAS (a property of m).
+   mean ||betahat - mean(betahat)||  is the VARIANCE the moments govern.
+========================================================================================
+
+   fixed m = 3
+     theta   index   bias/||b||   sd/||b||   bias share
+       0.0     2.5       0.0374     0.0744        20.1%
+       0.5     2.5       0.0358     0.0789        17.0%
+       1.0     2.5       0.0373     0.0968        12.9%
+       1.5     2.5       0.0390     0.1383         7.4%
+       2.0     2.5       0.0459     0.2092         4.6%
+       0.0     8.0       0.0410     0.1256         9.7%
+       0.5     8.0       0.0422     0.1387         8.5%
+       1.0     8.0       0.0447     0.1610         7.1%
+       1.5     8.0       0.0484     0.2032         5.4%
+       2.0     8.0       0.0551     0.2675         4.1%
+
+   fixed m = 8
+     theta   index   bias/||b||   sd/||b||   bias share
+       0.0     2.5       0.0177     0.4072         0.2%
+       0.5     2.5       0.0207     0.4328         0.2%
+       1.0     2.5       0.0231     0.5126         0.2%
+       1.5     2.5       0.0259     0.6154         0.2%
+       2.0     2.5       0.0440     0.7708         0.3%
+       0.0     8.0       0.0437     0.6659         0.4%
+       0.5     8.0       0.0231     0.6936         0.1%
+       1.0     8.0       0.0412     0.7287         0.3%
+       1.5     8.0       0.0397     0.8081         0.2%
+       2.0     8.0       0.0537     0.9073         0.3%
+
+   -> a bias share near 100% means the estimation table was measuring
+      the stopping rule, not the moment condition.
+
+========================================================================================
+PART 2 -- empirical size of the plug-in weighted-chi^2 at nominal 5%  (n = 1000, R = 400)
+   H0 is TRUE in every cell: the test is run at b = beta.
+   BCT is theta = 0.  Its variance operator V = E[eps^2 X (x) X] exists
+   only in the last two columns.
+========================================================================================
+      theta |   idx 2.5   idx 3.0   idx 3.5   idx 5.0   idx 8.0
+---------------------------------------------------------------
+ 0.0  (BCT)    |     0.083     0.077     0.058     0.052     0.050
+ 0.5           |     0.045     0.052     0.052     0.060     0.035
+ 1.0           |     0.052     0.043     0.040     0.052     0.048
+ 1.5           |     0.048     0.070     0.060     0.055     0.052
+ 2.0 (sign)    |     0.058     0.070     0.083     0.077     0.080
+
+   a well-calibrated column sits near 0.050; the Monte Carlo standard
+   error at R = 400 is 0.011, so read anything outside [0.028, 0.072] as a real distortion.
+
+wrote two-moments/results/a2_pilot_inference.json

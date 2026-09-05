@@ -1,0 +1,10 @@
+rule size under dependence (phi = 0.6), kappa = 0.0777, n = 1000, R = 2000
+s.e. = 0.0049, tolerance [0.0403, 0.0597]
+
+     index      size   mean th-hat      verdict
+       1.2    0.0455         0.674           ok
+       1.5    0.0460         0.567           ok
+       2.5    0.0510         0.253           ok
+       4.0    0.0540         0.054           ok
+
+wrote ../results/rule_size_confirm.json

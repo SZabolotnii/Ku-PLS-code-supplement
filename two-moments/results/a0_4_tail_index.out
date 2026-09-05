@@ -1,0 +1,32 @@
+Gate A0.4 --- tail index with a confidence interval (n = 2494, B = 4000, stationary-bootstrap mean block = 14)
+
+### ||X_t||  (yield-change curve, bp)
+  k window (fixed in advance)  : [62, 249]  (k_ref = 155)
+  Hill point estimate at k_ref : 3.061
+  Hill plot range over k window: [3.006, 3.940]
+  95% CI, i.i.d. bootstrap     : [2.677, 3.553]
+  95% CI, stationary bootstrap : [2.638, 3.802]
+  90% CI, Hill asymptotic      : [2.703, 3.527]
+  REPORTED (widest, k-inflated): [2.638, 3.940]
+    excludes 4 (E|.|^4 = inf)  : True
+    excludes 2 (E|.|^2 < inf)  : True
+    strictly inside (2,4)      : True
+
+### |Y_t|    (S&P 500 log return, %)
+  k window (fixed in advance)  : [62, 249]  (k_ref = 155)
+  Hill point estimate at k_ref : 2.490
+  Hill plot range over k window: [2.427, 2.792]
+  95% CI, i.i.d. bootstrap     : [2.207, 2.997]
+  95% CI, stationary bootstrap : [1.961, 3.483]
+  90% CI, Hill asymptotic      : [2.199, 2.869]
+  REPORTED (widest, k-inflated): [1.961, 3.483]
+    excludes 4 (E|.|^4 = inf)  : True
+    excludes 2 (E|.|^2 < inf)  : False
+    strictly inside (2,4)      : False
+
+GATE A0.4: PASS -- the fourth moment is excluded for both series.
+  QUALIFIED: the interval does not exclude 2 for every series; the
+  claim that must be written is 'the fourth moment is absent',
+  NOT 'the index lies in (2,4)'.  State it that way.
+
+wrote two-moments/results/a0_4_tail_index.json

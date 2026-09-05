@@ -1,0 +1,45 @@
+==================================================================================
+error ~ cauchy   (NO mean -- (MI) is UNDEFINED here)
+  median over 300 reps of || (1/n) sum_k eps_k t(X_k) ||   -- must -> 0 for an exact normal equation
+==================================================================================
+                      route      n=1000     n=4000    n=16000    n=64000    slope      verdict
+             theta=0  (BCT)     1.87707    2.02231    1.80328    2.04456    0.010     DOES NOT
+    theta=1  (spatial sign)     1.18696    1.17980    1.09429    1.11807   -0.018     DOES NOT
+            theta=2  (SSCM)     0.92327    0.89641    0.85043    0.84129   -0.024     DOES NOT
+             CF  e^{i<u,X>}     0.56862    0.59268    0.52985    0.61511    0.009     DOES NOT
+
+==================================================================================
+error ~ pareto-1.5   (a mean, no variance)
+  median over 300 reps of || (1/n) sum_k eps_k t(X_k) ||   -- must -> 0 for an exact normal equation
+==================================================================================
+                      route      n=1000     n=4000    n=16000    n=64000    slope      verdict
+             theta=0  (BCT)     0.37024    0.22978    0.15612    0.09510   -0.322     DOES NOT
+    theta=1  (spatial sign)     0.20789    0.12375    0.07836    0.05314   -0.328     DOES NOT
+            theta=2  (SSCM)     0.17536    0.10333    0.06712    0.04419   -0.329     DOES NOT
+             CF  e^{i<u,X>}     0.10941    0.06339    0.04119    0.02639   -0.339     DOES NOT
+
+==================================================================================
+error ~ gauss   (all moments)
+  median over 300 reps of || (1/n) sum_k eps_k t(X_k) ||   -- must -> 0 for an exact normal equation
+==================================================================================
+                      route      n=1000     n=4000    n=16000    n=64000    slope      verdict
+             theta=0  (BCT)     0.05729    0.02962    0.01448    0.00714   -0.502     vanishes
+    theta=1  (spatial sign)     0.02815    0.01458    0.00693    0.00352   -0.504     vanishes
+            theta=2  (SSCM)     0.02571    0.01345    0.00629    0.00319   -0.506     vanishes
+             CF  e^{i<u,X>}     0.01509    0.00762    0.00370    0.00190   -0.501     vanishes
+
+READ-OFF.
+  Cauchy      : NO route vanishes, the bounded ones included.  A bounded
+                test function does not repair an error with no mean.
+                (MI) is undefined here, so nothing is being violated --
+                the manuscript was asserting a hypothesis it had ruled out.
+  Pareto-1.5  : every route vanishes (E|eps| < inf gives exactness) but
+                the log-slope is well short of -1/2 -- consistency without
+                a sqrt(n) CLT, which needs E eps^2.
+  Gaussian    : every route vanishes at the -1/2 CLT rate.
+
+  CONCLUSION: the error-side moment requirement is a property of eps, not
+  of the feature.  One moment for consistency, two for inference, on every
+  route.  The paper must say so; the earlier manuscript said the reverse.
+
+wrote two-moments/results/a0_1_bounded_test_function.json

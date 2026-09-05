@@ -1,0 +1,49 @@
+====================================================================================================
+Q1 -- is A_theta diagonal in the eigenbasis of K?
+     off-diagonal HS mass as a fraction of ||A_theta||_HS, in the
+     POPULATION basis.  theta = 0 is the Monte-Carlo noise floor.
+     A real off-diagonal does NOT shrink when n grows; the floor does.
+====================================================================================================
+   independent SYMMETRIC (Gaussian)
+      n =   200,000 |    0.00463    0.00284    0.00221    0.00222    0.00251   <- theta = 0.0, 0.5, 1.0, 1.5, 2.0
+      n =   800,000 |    0.00179    0.00151    0.00143    0.00145    0.00163   <- theta = 0.0, 0.5, 1.0, 1.5, 2.0
+      ratio of the theta=1 column between the two n:  1.55   (2.00 = pure noise, 1.00 = a real off-diagonal)
+   independent SYMMETRIC (Laplace)
+      n =   200,000 |    0.00361    0.00273    0.00275    0.00311    0.00369   <- theta = 0.0, 0.5, 1.0, 1.5, 2.0
+      n =   800,000 |    0.00343    0.00211    0.00176    0.00158    0.00161   <- theta = 0.0, 0.5, 1.0, 1.5, 2.0
+      ratio of the theta=1 column between the two n:  1.56   (2.00 = pure noise, 1.00 = a real off-diagonal)
+   independent ASYMMETRIC (centred exp)
+      n =   200,000 |    0.00422    0.01127    0.02541    0.04265    0.06085   <- theta = 0.0, 0.5, 1.0, 1.5, 2.0
+      n =   800,000 |    0.00260    0.01132    0.02625    0.04399    0.06255   <- theta = 0.0, 0.5, 1.0, 1.5, 2.0
+      ratio of the theta=1 column between the two n:  0.97   (2.00 = pure noise, 1.00 = a real off-diagonal)
+   non-commuting 2-component mixture
+      n =   200,000 |    0.00747    0.03295    0.07671    0.12494    0.16918   <- theta = 0.0, 0.5, 1.0, 1.5, 2.0
+      n =   800,000 |    0.00253    0.03330    0.07667    0.12525    0.16978   <- theta = 0.0, 0.5, 1.0, 1.5, 2.0
+      ratio of the theta=1 column between the two n:  1.00   (2.00 = pure noise, 1.00 = a real off-diagonal)
+
+   Independence + symmetry of the coordinates in the eigenbasis of K is
+   the hypothesis, and it is weaker than ellipticity: the Laplace row
+   satisfies it and the Gaussian row is not special.  A first version of
+   this script called the centred-exponential row a counterexample on the
+   strength of a principal ANGLE, which the wide eigenvalue gaps of a
+   j^-2 spectrum make insensitive; the mass measured here is the
+   quantity that decides it.
+
+==============================================================================================
+Q2 -- does theta change the DECAY EXPONENT or only the top of the
+      spectrum?   shrinkage d_j = E[||Z||^-th Z_j^2]/(sig_j^2 E[||Z||^-th])
+      population diagonal, J = 200, 4,000,000 draws
+==============================================================================================
+    theta |      j=1      j=2      j=5     j=10     j=25     j=50    j=100    j=150    j=200   tail slope   (j in [J/2, J])
+     0.00 |   1.0017   0.9991   1.0010   1.0000   1.0000   0.9999   0.9997   1.0009   1.0005     -0.00018
+     0.50 |   0.8008   0.9090   0.9794   0.9938   0.9992   0.9996   0.9998   1.0011   1.0006     -0.00012
+     1.00 |   0.6369   0.8192   0.9540   0.9863   0.9980   0.9993   0.9999   1.0012   1.0008     -0.00005
+     1.50 |   0.5055   0.7323   0.9252   0.9774   0.9966   0.9988   0.9999   1.0013   1.0009      0.00004
+     2.00 |   0.4015   0.6505   0.8936   0.9671   0.9948   0.9983   1.0000   1.0014   1.0011      0.00013
+
+   d_j -> 1 with a tail slope indistinguishable from 0 means the eigenvalue
+   map is lambda_j -> c(theta) * lambda_j * (1 + o(1)): the DECAY EXPONENT
+   is untouched, S_theta = S_0 with the same mu, and Theorem 3 transports
+   with the SAME RATE.  What theta buys is the moment conditions and the
+   condition number, not a faster rate -- and that is the honest claim.
+wrote two-moments/results/a1_6b_source_condition.json

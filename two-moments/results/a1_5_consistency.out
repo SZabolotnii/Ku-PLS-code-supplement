@@ -1,0 +1,35 @@
+====================================================================================
+CLAIM 1 -- does the zero-norm convention change the identified subspace?
+   Design: a law with a genuine ATOM AT ZERO (20% of draws set to 0),
+   plus a direction h0 that X never loads on, so ker A is nontrivial and
+   its dimension is known in advance.
+====================================================================================
+   P(X=0) = 0.00 |  th=0.0: rank 11, rel 8.1e-04  th=0.5: rank 11, rel 7.7e-04  th=1.0: rank 11, rel 9.1e-04  th=2.0: rank 11, rel 1.8e-03
+   P(X=0) = 0.20 |  th=0.0: rank 11, rel 7.9e-04  th=0.5: rank 11, rel 9.9e-04  th=1.0: rank 11, rel 1.5e-03  th=2.0: rank 11, rel 3.7e-03
+   P(X=0) = 0.50 |  th=0.0: rank 11, rel 8.4e-04  th=0.5: rank 11, rel 8.1e-04  th=1.0: rank 11, rel 7.9e-04  th=2.0: rank 11, rel 2.0e-03
+   d = 12, and the last coordinate is never loaded, so the population
+   rank is 11 at every theta if the convention leaves ker unchanged.
+
+   VERDICT: the rank is the same at every theta and every atom size, and
+   the normal equation stays exact.  On {X = 0} the form <h,X>^2 is zero
+   regardless, so the indicator cannot change which h annihilate it:
+   ker A_theta = {h : <h,X> = 0 a.s.}, UNCHANGED.  The amendment recorded
+   in EMPIRICAL-FINDINGS.md section 2 was too strong and is corrected.
+
+====================================================================================
+CLAIM 2 -- consistency under the ESTIMATION stopping rule
+   ||beta-hat - beta|| / ||beta||, median over 200 replications.
+   A consistent estimator's column falls; the rate is A1.6 and is open.
+====================================================================================
+     index   theta |     n=500    n=2000    n=8000   n=32000    ratio
+       1.5     0.0 |    0.1446    0.1050    0.1102    0.0896    0.620
+       1.5     0.5 |    0.0940    0.0597    0.0385    0.0249    0.265
+       1.5     1.0 |    0.0907    0.0511    0.0398    0.0222    0.245
+       1.5     2.0 |    0.1094    0.0807    0.0505    0.0366    0.335
+       3.0     0.0 |    0.1032    0.0848    0.0455    0.0399    0.386
+       3.0     0.5 |    0.0987    0.0800    0.0437    0.0387    0.392
+       3.0     1.0 |    0.0965    0.0819    0.0462    0.0370    0.384
+       3.0     2.0 |    0.1263    0.0823    0.0619    0.0381    0.302
+   -> ratio well below 1 = the error is falling with n.
+
+wrote two-moments/results/a1_5_consistency.json

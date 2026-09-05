@@ -1,0 +1,93 @@
+[
+  {
+    "name": "treasury",
+    "n": 6264,
+    "k_ref": 391,
+    "point": 3.1308480099901272,
+    "lo": 2.760902926732837,
+    "hi": 3.640938152483671,
+    "in_1_2": false,
+    "below_2": false,
+    "straddles_2": false,
+    "span": "2001-08-01..2026-08-19",
+    "desc": "yield curve across maturity, bp (the incumbent)"
+  },
+  {
+    "name": "credit-oas",
+    "n": 786,
+    "k_ref": 48,
+    "point": 2.7951893534173,
+    "lo": 2.079954846022616,
+    "hi": 3.897887953805801,
+    "in_1_2": false,
+    "below_2": false,
+    "straddles_2": false,
+    "span": "2023-08-22..2026-08-19",
+    "desc": "option-adjusted spread across the rating ladder AAA->CCC, bp"
+  },
+  {
+    "name": "hy-curve",
+    "n": 786,
+    "k_ref": 48,
+    "point": 2.7668326068468176,
+    "lo": 2.0921077720707917,
+    "hi": 3.8583445072299636,
+    "in_1_2": false,
+    "below_2": false,
+    "straddles_2": false,
+    "span": "2023-08-22..2026-08-19",
+    "desc": "high-yield sub-indices only, bp"
+  },
+  {
+    "name": "tips-curve",
+    "n": 4126,
+    "k_ref": 257,
+    "point": 3.320891718264866,
+    "lo": 2.959112952860258,
+    "hi": 4.063472799295128,
+    "in_1_2": false,
+    "below_2": false,
+    "straddles_2": false,
+    "span": "2010-02-23..2026-08-19",
+    "desc": "TIPS real yields across maturity, bp (control)"
+  },
+  {
+    "name": "cp-financial",
+    "n": 5317,
+    "k_ref": 332,
+    "point": 1.8401623524302322,
+    "lo": 1.4582936130276956,
+    "hi": 2.383234327698598,
+    "in_1_2": false,
+    "below_2": false,
+    "straddles_2": true,
+    "span": "1997-01-03..2026-08-05",
+    "desc": "financial commercial-paper rates across maturity, bp -- the 2008 funding freeze lives here"
+  },
+  {
+    "name": "ig-ladder",
+    "n": 786,
+    "k_ref": 48,
+    "point": 3.3229125170499145,
+    "lo": 2.590164280007401,
+    "hi": 4.833905048528555,
+    "in_1_2": false,
+    "below_2": false,
+    "straddles_2": false,
+    "span": "2023-08-22..2026-08-19",
+    "desc": "investment-grade effective yields across the rating ladder, bp"
+  },
+  {
+    "name": "cp-term",
+    "n": 4405,
+    "k_ref": 275,
+    "point": 1.5920291919813792,
+    "lo": 1.3326697058140968,
+    "hi": 2.1657372208441776,
+    "in_1_2": false,
+    "below_2": false,
+    "straddles_2": true,
+    "span": "1998-01-05..2026-07-02",
+    "desc": "AA financial commercial-paper rate across term 1/7/15/30/60/90 days -- a six-point money-market curve spanning 2008"
+  }
+]

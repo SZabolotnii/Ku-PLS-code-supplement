@@ -1,0 +1,26 @@
+====================================================================================================
+R_n(theta) on each application, and the kappa at which theta-hat switches
+====================================================================================================
+   application            R_n(0.00)   R_n(0.25)   R_n(0.50)   R_n(0.75)   R_n(1.00)
+   CP x VIX                 0.46791     0.36678     0.29503     0.14635     0.03907
+   CP x NASDAQ              0.65329     0.50111     0.30851     0.12473     0.02903
+   Treasury x S&P 500       0.16211     0.13951     0.10894     0.07566     0.04583
+
+   R_n is decreasing in theta on all three, so the rule is well defined:
+   theta-hat is the first grid point whose R_n falls below kappa.
+
+====================================================================================================
+MARGIN -- distance from the shipped kappa to the nearest switch,
+          in units of kappa's own Monte Carlo s.e. at R = 400
+====================================================================================================
+   application             kappa  th-hat  switch down at  switch up at  margin / s.e.
+   CP x VIX               0.0777    1.00         0.03907       0.14635           5.22
+   CP x NASDAQ            0.0777    1.00         0.02903       0.12473           6.36
+   Treasury x S&P 500     0.0966    0.75         0.07566       0.10894           1.19
+
+   READING.  A margin below about 2 s.e. means the pick is not resolved by
+   the calibration and the paper must say so.  The fix is not a different
+   kappa -- it is calibrating at a larger R, which is cheap (the null is
+   light-tailed and simulated once) and was simply not done.
+
+wrote two-moments/results/a3_kappa_margin.json

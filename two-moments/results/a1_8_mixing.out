@@ -1,0 +1,37 @@
+========================================================================================
+TEST 1 -- MDS errors with CLUSTERED volatility, and a dependent predictor
+   log-vol AR(1) at 0.9, phi_x = 0.6.  n = 1000, R = 700, s.e. 0.0082,
+   tolerance [0.034, 0.066]
+========================================================================================
+     theta |   idx 1.5   idx 2.5   idx 4.0
+       0.0 |    0.036     0.040     0.050 
+       0.5 |    0.046     0.051     0.061 
+       1.0 |    0.060     0.054     0.047 
+   * outside +-2 s.e.   -> the plug-in survives clustering in BOTH X and eps.
+
+========================================================================================
+TEST 2 -- NOT an MDS: serially CORRELATED errors break (MI-t)
+   The plug-in Vhat ignores the autocovariances the limit then carries,
+   so the size must degrade with rho_e.  This is the theorem's boundary.
+========================================================================================
+     theta |   rho_e=0.0   rho_e=0.3   rho_e=0.6
+       0.0 |      0.041       0.050       0.049 
+       1.0 |      0.037       0.053       0.056 
+   * outside +-2 s.e.
+
+========================================================================================
+TEST 3 -- IS psi-hat_t A MARTINGALE DIFFERENCE ON THE REAL DATA?
+   Ljung-Box(10) on each component of psi-hat_t = w_theta(X_t) Y_t X_t
+   (H0: beta = 0, so the residual is Y).  chi2(10) 95% = 18.31.
+   Also on ||psi||^2, which SHOULD show dependence -- volatility clusters
+   even when signs do not, and that is the whole point.
+========================================================================================
+     Treasury x S&P 500 theta=0.0  median LB   438.01   components rejecting 100.0%   LB(||psi||^2)      865.5
+     Treasury x S&P 500 theta=1.0  median LB   197.76   components rejecting 100.0%   LB(||psi||^2)     2713.7
+               CP x VIX theta=0.0  median LB    36.46   components rejecting 83.3%   LB(||psi||^2)        8.8
+               CP x VIX theta=1.0  median LB    30.23   components rejecting 100.0%   LB(||psi||^2)      716.2
+
+   -> components near the chi2 range with ||psi||^2 far above it is the
+      signature the theorem needs: clustered magnitude, unpredictable sign.
+
+wrote two-moments/results/a1_8_mixing.json

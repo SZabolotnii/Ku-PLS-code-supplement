@@ -1,0 +1,182 @@
+{
+  "seed": 20260905,
+  "quick": false,
+  "config": {
+    "reps_rho": 40,
+    "R_calibration": 3000,
+    "bootstrap": 2000,
+    "calibration_index": 4.0,
+    "targets": [
+      {
+        "name": "Treasury x S&P 500",
+        "n": 2494,
+        "rho_target": 0.3034,
+        "phi_shipped": 0.32
+      },
+      {
+        "name": "CP x VIX / NASDAQ",
+        "n": 4396,
+        "rho_target": 0.5906,
+        "phi_shipped": 0.608
+      }
+    ]
+  },
+  "A_attenuation": {
+    "rows": {
+      "Treasury x S&P 500": {
+        "n": 2494,
+        "phi_shipped": 0.32,
+        "rho_radial_at_shipped": 0.3008167692511792,
+        "rho_norm_at_shipped": 0.06764934992443962,
+        "target": 0.3034,
+        "phi_fixed": 0.995,
+        "rho_norm_at_fixed": 0.15591921657179125,
+        "ceiling_at_phi_max": 0.1850926975438889,
+        "target_reachable": false,
+        "attenuation_pct": 77.51144323076183
+      },
+      "CP x VIX / NASDAQ": {
+        "n": 4396,
+        "phi_shipped": 0.608,
+        "rho_radial_at_shipped": 0.5900154402474904,
+        "rho_norm_at_shipped": 0.1263490847366769,
+        "target": 0.5906,
+        "phi_fixed": 0.995,
+        "rho_norm_at_fixed": 0.16872810101607638,
+        "ceiling_at_phi_max": 0.21522689448258286,
+        "target_reachable": false,
+        "attenuation_pct": 78.58546130866033
+      }
+    },
+    "attenuation_exceeds_10pc": true,
+    "targets_unreachable": [
+      "Treasury x S&P 500",
+      "CP x VIX / NASDAQ"
+    ],
+    "cv_radial_at_index4": 0.3414220527255278,
+    "cv_Znorm_at_index4": 0.42336735770064626,
+    "independent_factor_dominates": true,
+    "pass": true
+  },
+  "C_kappa": {
+    "rows": {
+      "Treasury x S&P 500": {
+        "shipped": {
+          "phi": 0.32,
+          "kappa": 0.09624511740692884,
+          "ci": [
+            0.08907987447503857,
+            0.10488397362881345
+          ],
+          "se": 0.004036165808177678
+        },
+        "fixed": {
+          "phi": 0.995,
+          "kappa": 0.0495473307822234,
+          "ci": [
+            0.04727597526049559,
+            0.05170324779102171
+          ],
+          "se": 0.0011621390617001914
+        },
+        "change_pct": -48.51964222482583,
+        "fall_pct": 48.51964222482583,
+        "cis_disjoint": true
+      },
+      "CP x VIX / NASDAQ": {
+        "shipped": {
+          "phi": 0.608,
+          "kappa": 0.07491787127786921,
+          "ci": [
+            0.07051344892160877,
+            0.07827385350082308
+          ],
+          "se": 0.002230732909068952
+        },
+        "fixed": {
+          "phi": 0.995,
+          "kappa": 0.040486378175365934,
+          "ci": [
+            0.03814696757009485,
+            0.042779533507875014
+          ],
+          "se": 0.0011174399909704346
+        },
+        "change_pct": -45.95898483927474,
+        "fall_pct": 45.95898483927474,
+        "cis_disjoint": true
+      }
+    },
+    "pass": true
+  },
+  "D_picks": {
+    "rows": {
+      "CP x VIX": {
+        "R_n": {
+          "0.0": 0.4679076252785698,
+          "0.25": 0.3667848576628009,
+          "0.5": 0.2950304370732121,
+          "0.75": 0.14634785113636556,
+          "1.0": 0.03907205930839609
+        },
+        "shipped": {
+          "kappa": 0.07491787127786921,
+          "theta_hat": 1.0,
+          "margin_se": 16.069073901112706
+        },
+        "fixed": {
+          "kappa": 0.040486378175365934,
+          "theta_hat": 1.0,
+          "margin_se": 1.2656776904338132
+        },
+        "changed": false
+      },
+      "CP x NASDAQ": {
+        "R_n": {
+          "0.0": 0.6532902967083568,
+          "0.25": 0.501107090280613,
+          "0.5": 0.30850892665834845,
+          "0.75": 0.12473470360569335,
+          "1.0": 0.029031808274582162
+        },
+        "shipped": {
+          "kappa": 0.07491787127786921,
+          "theta_hat": 1.0,
+          "margin_se": 20.569949372575785
+        },
+        "fixed": {
+          "kappa": 0.040486378175365934,
+          "theta_hat": 1.0,
+          "margin_se": 10.250724865176977
+        },
+        "changed": false
+      },
+      "Treasury x S&P 500": {
+        "R_n": {
+          "0.0": 0.16211091692647853,
+          "0.25": 0.1395111288072245,
+          "0.5": 0.1089417094880139,
+          "0.75": 0.07566188977230125,
+          "1.0": 0.04583004594217888
+        },
+        "shipped": {
+          "kappa": 0.09624511740692884,
+          "theta_hat": 0.75,
+          "margin_se": 3.14570626790418
+        },
+        "fixed": {
+          "kappa": 0.0495473307822234,
+          "theta_hat": 1.0,
+          "margin_se": 3.198657512299935
+        },
+        "changed": true
+      }
+    },
+    "picks_that_moved": [
+      "Treasury x S&P 500"
+    ],
+    "any_pick_moved": true,
+    "pass": true
+  },
+  "all_pass": true
+}

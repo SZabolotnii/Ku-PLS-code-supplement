@@ -1,0 +1,39 @@
+============================================================================================
+relative slope error  ||betahat - beta|| / ||beta||   (n = 1000, R = 300, eps ~ gauss, adaptive early stopping)
+BCT is theta = 0.  Its Assumption 1 (E||X||^4 < inf) HOLDS only in the last two columns.
+============================================================================================
+  theta |         idx 2.5         idx 3.0         idx 3.5         idx 5.0         idx 8.0
+        |    median (p90)    median (p90)    median (p90)    median (p90)    median (p90)
+-----------------------------------------------------------------------------------------
+  0.0  (BCT)|    0.099 (0.13)    0.094 (0.12)    0.092 (0.11)    0.093 (0.11)    0.097 (0.12)
+  0.5       |    0.090 (0.11)    0.088 (0.11)    0.088 (0.11)    0.091 (0.11)    0.096 (0.12)
+  1.0       |    0.087 (0.11)    0.087 (0.11)    0.089 (0.11)    0.094 (0.18)    0.099 (0.19)
+  1.5       |    0.095 (0.19)    0.097 (0.19)    0.096 (0.19)    0.106 (0.20)    0.117 (0.20)
+  2.0 (sign)|    0.172 (0.20)    0.162 (0.20)    0.162 (0.20)    0.168 (0.20)    0.173 (0.20)
+
+   tail index 2.5 : best theta = 1.0   median error vs BCT =  0.88x   (BCT 0.099 -> 0.087)
+   tail index 3.0 : best theta = 1.0   median error vs BCT =  0.93x   (BCT 0.094 -> 0.087)
+   tail index 3.5 : best theta = 0.5   median error vs BCT =  0.96x   (BCT 0.092 -> 0.088)
+   tail index 5.0 : best theta = 0.5   median error vs BCT =  0.99x   (BCT 0.093 -> 0.091)
+   tail index 8.0 : best theta = 0.5   median error vs BCT =  0.99x   (BCT 0.097 -> 0.096)
+
+============================================================================================
+relative slope error  ||betahat - beta|| / ||beta||   (n = 1000, R = 300, eps ~ t3, adaptive early stopping)
+BCT is theta = 0.  Its Assumption 1 (E||X||^4 < inf) HOLDS only in the last two columns.
+============================================================================================
+  theta |         idx 2.5         idx 3.0         idx 3.5         idx 5.0         idx 8.0
+        |    median (p90)    median (p90)    median (p90)    median (p90)    median (p90)
+-----------------------------------------------------------------------------------------
+  0.0  (BCT)|    0.104 (0.14)    0.103 (0.14)    0.104 (0.13)    0.108 (0.15)    0.113 (0.16)
+  0.5       |    0.098 (0.13)    0.101 (0.13)    0.103 (0.14)    0.111 (0.15)    0.119 (0.18)
+  1.0       |    0.099 (0.13)    0.106 (0.16)    0.111 (0.17)    0.125 (0.21)    0.133 (0.22)
+  1.5       |    0.118 (0.20)    0.131 (0.21)    0.138 (0.21)    0.154 (0.22)    0.160 (0.22)
+  2.0 (sign)|    0.177 (0.22)    0.178 (0.22)    0.178 (0.22)    0.190 (0.24)    0.188 (0.24)
+
+   tail index 2.5 : best theta = 0.5   median error vs BCT =  0.94x   (BCT 0.104 -> 0.098)
+   tail index 3.0 : best theta = 0.5   median error vs BCT =  0.98x   (BCT 0.103 -> 0.101)
+   tail index 3.5 : best theta = 0.5   median error vs BCT =  0.99x   (BCT 0.104 -> 0.103)
+   tail index 5.0 : best theta = 0.0   median error vs BCT =  1.00x   (BCT 0.108 -> 0.108)
+   tail index 8.0 : best theta = 0.0   median error vs BCT =  1.00x   (BCT 0.113 -> 0.113)
+
+wrote two-moments/results/a2_pilot_estimation.json

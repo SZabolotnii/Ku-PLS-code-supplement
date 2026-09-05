@@ -1,0 +1,40 @@
+========================================================================================================
+STEP 1 -- kappa at R = 3000, at both the shipped and the implied phi
+========================================================================================================
+   cell                        n     phi    kappa              95% CI     s.e.   shipped      |z|       
+   i.i.d. reference         1000   0.000   0.1467   [0.1374, 0.1545]   0.0050    0.1336     0.96     ok
+                                   0.000   0.1459   [0.1343, 0.1516]   0.0047
+   Treasury x S&P 500       2494   0.300   0.0921   [0.0878, 0.0982]   0.0025    0.0966     0.66     ok
+                                   0.320   0.0934   [0.0859, 0.0994]   0.0033
+   CP panels                4396   0.600   0.0698   [0.0643, 0.0746]   0.0030    0.0777     0.96     ok
+                                   0.608   0.0708   [0.0664, 0.0753]   0.0024
+
+   |z| = |kappa_shipped - kappa_3000| / (the R = 400 standard error).
+   A FLAG would mean the shipped calibration was BIASED rather than
+   merely noisy, and every downstream number would need re-running.
+
+========================================================================================================
+STEP 2 -- does the LEVEL of the rule survive the new kappa?  n = 1000, R = 2000, phi = 0.608
+========================================================================================================
+   tolerance +-2 s.e. = [0.0403, 0.0597]   kappa_new = 0.0708  vs  kappa_shipped = 0.0777
+
+     index   size (new)   size (shipped)   mean th-hat (new)   (shipped)
+       1.2      0.0465           0.0455                0.693       0.676
+       1.5      0.0510           0.0500                0.589       0.568
+       2.5      0.0540           0.0525                0.284       0.259
+       4.0      0.0520           0.0505                0.068       0.056
+   * = outside +-2 s.e. of nominal
+
+========================================================================================================
+STEP 3 -- picks and MARGINS on the applications, under the new kappa
+========================================================================================================
+   application           R_n(0.00)  R_n(0.25)  R_n(0.50)  R_n(0.75)  R_n(1.00)    kappa  th-hat  margin/se   was
+   CP x VIX                0.46791    0.36678    0.29503    0.14635    0.03907   0.0708    1.00      13.08  1.00
+   CP x NASDAQ             0.65329    0.50111    0.30851    0.12473    0.02903   0.0708    1.00      17.22  1.00
+   Treasury x S&P 500      0.16211    0.13951    0.10894    0.07566    0.04583   0.0934    0.75       4.76  0.75
+
+   'margin/se' is now in units of the R = 3000 standard error, so it is
+   the number that decides whether each pick is resolved.  'was' is the
+   pick under the shipped kappa; a difference is a change of result.
+
+wrote two-moments/results/a3_kappa_recalibrate.json

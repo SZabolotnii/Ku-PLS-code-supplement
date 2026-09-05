@@ -1,0 +1,46 @@
+==============================================================================
+Repair A1: the split threshold at a fixed pilot depth
+seed 20260905   m0=3   rho=0.35
+==============================================================================
+
+A. the pilot is NOT consistent at fixed m0 (theta=1, index 2.5)
+   population 3-step CG error, relative: 0.03902
+      n=   2000   median relative pilot error 0.07269
+      n=   8000   median relative pilot error 0.04604
+      n=  32000   median relative pilot error 0.03924
+      n= 128000   median relative pilot error 0.03671
+   approaches that floor rather than zero: yes; stays above half of it: yes
+   -> the claim 'consistency follows from ker A_theta = {0}' is REFUTED:
+      ker A_theta = {0} gives beta^(m) -> beta as m -> infinity, not as n -> infinity.
+
+B/C. the offset it induces, and the bound the existing proof already supports
+      cell                       ||d0||       bias      cross  cross/se      Delta  CS bound  Delta/trV
+      theta=1.0, index=2.5       0.0388   0.000274   0.000028      1.20   0.000303    0.1473    0.121%
+      theta=0.5, index=2.5       0.0413   0.008162   0.002837      0.86   0.010999    3.4719    2.259%
+      theta=2.0, index=2.5       0.0359   0.000039  -0.000003     -0.36   0.000036    0.0306    0.022%
+      theta=1.0, index=3.5       0.0385   0.000099  -0.000008     -0.53   0.000090    0.0806    0.036%
+   Cauchy-Schwarz bound holds in every cell: yes
+   cross term within 3 s.e. of zero, as (MI) predicts: yes
+
+D. what step (f) actually needs: tr V_split / tr V_theta, a constant factor
+      cell                          q10   median      q90
+      theta=1.0, index=2.5       0.9726   0.9993   1.0230
+      theta=0.5, index=2.5       0.9692   1.0119   1.0810
+      theta=2.0, index=2.5       0.9629   1.0017   1.0434
+      theta=1.0, index=3.5       0.9757   1.0067   1.0332
+
+E. the alternative route, priced: growing m0 shrinks the offset
+        m0  ||d0||/||beta||       Delta   Delta/trV
+         1          0.20085    0.040774    16.319%
+         2          0.07458    0.002091     0.839%
+         3          0.03715    0.000242     0.097%
+         5          0.01627    0.000012     0.005%
+         8          0.01955    0.000013     0.005%
+        12          0.01695    0.000016     0.006%
+   So route (A), m0 = m0(n) -> infinity, is real and would restore the lemma as
+   written; route (B), fixed m0 with the offset stated, needs no new sequence and
+   is what the manuscript's own prose beside the lemma already claimed.
+
+==============================================================================
+ALL PASS
+==============================================================================

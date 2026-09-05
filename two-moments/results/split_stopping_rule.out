@@ -1,0 +1,84 @@
+==============================================================================
+Repair (b): a stopping threshold that does not depend on the stopping path
+seed 20260904   theta=1   rho=0.35   m0=3
+==============================================================================
+
+A. the defect: tr Vhat(m) along the CG path (theta=1, tail index 2.5)
+           m         1         2         3         5         8        12
+        mean    0.2903    0.2523    0.2500    0.2502    0.2497    0.2496
+        s.e.    0.0016    0.0007    0.0007    0.0007    0.0007    0.0007
+   falls by 1.163x from m=1 to m=12; monotone: no; resolved against sampling error: yes
+   The threshold therefore falls as the iterate fits, which is the
+   dependence the proof cannot absorb.   [ok]
+
+B. consistency of the split estimate.  tr V_theta = 0.2500
+   (theta=1, tail index 2.5: E||X||^2 finite, E||X||^4 INFINITE)
+             n   rel. error       IQR    eps^2 w      cross       bias
+           500      +0.0830    0.1508     0.2501    +0.0000     0.0234
+          2000      +0.0216    0.0619     0.2499    -0.0000     0.0035
+          8000      +0.0064    0.0281     0.2496    -0.0000     0.0009
+   The three columns are the terms of (eps + <d,X>)^2 w: the first has mean
+   tr V_theta and needs only (M2); the third is bounded by ||d||^2 E||X||^{4-2t},
+   which is (M1); the cross term by 2||d|| sqrt((M1)(M2)).  No fourth moment.
+   -> [ok]
+
+C. does the threshold bind, and what does the split cost?  (theta=1)
+   A rule comparison is empty where every rule stops at the same step, so the
+   disagreement rate comes first.  tau is swept because it is what makes the
+   threshold bind; the index is swept across the (M1) boundary, which at
+   theta=1 is E||X||^2 < inf, i.e. tail index > 2.
+      design                      (M1)  disagree  self-ref     split   oracle  split/self     steps
+      index=2.5, n=2000, tau=1     yes     1.3%    0.0832    0.0831   0.0831       0.999      2-3 
+      index=2.5, n=2000, tau=0.3   yes     4.0%    0.1799    0.1650   0.1756       0.917      3-6 
+      index=2.5, n=8000, tau=0.3   yes     1.7%    0.0980    0.0974   0.0964       0.994      4-6 
+      index=2.5, n=2000, tau=0.15   yes     2.7%    0.3024    0.3017   0.3052       0.998      5-8 
+      index=3.5, n=2000, tau=0.3   yes     4.0%    0.1977    0.1958   0.1977       0.990      3-6 
+      index=1.5, n=2000, tau=0.3    NO    13.3%    0.1197    0.0986   0.1212       0.824      2-6 
+      index=1.5, n=2000, tau=0.15    NO    10.7%    0.1746    0.1721   0.1767       0.986      4-8 
+   worst disagreement where (M1) holds: 4.0%; where it fails: 13.3%
+   The split estimate's bias term is controlled by (M1) and by nothing else,
+   so this is the predicted pattern, not a coincidence.  Where (M1) holds the
+   split costs at most 0.999x the self-referential
+   rule (median 0.994x).   [ok]
+
+D. is the rescaling ratio stable in n?  operator-scale vs split
+   The 1.78x on record is one cell of a comparison at a single n.  Read across
+   the n grid, the stored artifacts already give 1.64, 0.98, 1.35, 1.81 in that
+   row.  Same comparison against the split rule, at every n (see also part F,
+   which recomputes the published table at its own n=1000):
+      design                       n=500      n=2000      n=8000     min     max
+      theta=1, index=1.5           1.23x       2.49x       1.02x    1.02    2.49
+      theta=1, index=3.0           1.00x       2.38x       2.62x    1.00    2.62
+      theta=2, index=1.5           1.00x       1.00x       2.56x    1.00    2.56
+      theta=2, index=3.0           1.00x       1.00x       2.53x    1.00    2.53
+   stable in n: yes. No single cell of this ratio should be quoted as a headline number.
+   worst ratio over the whole grid 1.00: the split rule
+   is never materially worse.   [ok]
+
+E. sensitivity to the split fraction and the pilot depth
+      rho=0.2, m0=2        0.1974
+      rho=0.2, m0=3        0.2020
+      rho=0.2, m0=5        0.2009
+      rho=0.35, m0=2       0.2005
+      rho=0.35, m0=3       0.2000
+      rho=0.35, m0=5       0.2034
+      rho=0.5, m0=2        0.2000
+      rho=0.5, m0=3        0.1983
+      rho=0.5, m0=5        0.1998
+   spread 1.030x across the grid; best rho=0.2, m0=2.   [ok]
+
+F. Table 7.3 recomputed under the split rule (n=1000), and its caption tested
+   The published table explains its theta=2 column by saying the operator-scale
+   rule halts the spatial sign after a single step.  That is checkable.
+        index     theta=0   theta=0.5     theta=1     theta=2
+          1.5       0.93x       1.78x       2.32x       1.00x
+          2.5       1.30x       1.24x       1.01x       1.00x
+          4.0       1.00x       1.00x       1.00x       1.00x
+   median steps of the operator-scale rule at theta=2: 1, 1, 1  -> caption mechanism CONFIRMED
+   median steps of the split rule at theta=2: 1, 1, 1  -> both rules one step at theta=2: yes
+   split never materially worse (min ratio > 0.9): yes; noise scale wins at index 1.5, theta in {1/2, 1}: yes
+   -> [ok]
+
+==============================================================================
+ALL PASS
+==============================================================================

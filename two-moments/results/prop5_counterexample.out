@@ -1,0 +1,82 @@
+==============================================================================
+Prop. 5 (prop:noremoval) as submitted is FALSE -- counterexample and repair
+seed 20260903
+==============================================================================
+
+A. the witness law   P(|eps| > x) = 1/(x(1+ln x)),  symmetric
+   sampler vs survival function, max abs error over the grid: 0.00012
+   E|eps| = infinity.  Closed form is exact; the Monte Carlo column tracks it
+   only while M stays inside the sample range (max|eps| = 1.62e+05),
+   then saturates -- an estimator artefact, marked, not a property of the law:
+               M   Monte Carlo   closed form   M in range
+           1e+02        2.5469        2.5453   yes
+           1e+04        3.2283        3.2255   yes
+           1e+08        3.5658        3.9148   no (saturated)
+           1e+16        3.5658        4.6070   no (saturated)
+           1e+32        3.5658        5.2999   no (saturated)
+   Feller's n P(|eps| > n):
+       witness   1e+03: 0.1265  1e+06: 0.0675  1e+12: 0.0349  1e+60: 0.0072
+        cauchy   1e+03: 0.6366  1e+06: 0.6366  1e+12: 0.6366  1e+60: 0.6366
+   -> witness: E|eps| = inf AND n P(|eps|>n) -> 0.   [ok]
+
+B. the claim as stated is false, twice over
+   B1  t == 0 satisfies every hypothesis and the average is identically 0.
+       Exact; no simulation involved.
+   B2  t == v, a fixed unit vector -- bounded, and bounded AWAY from zero.
+       The average is |n^{-1} sum eps_k|, and Kolmogorov-Feller gives it
+       -> 0 in probability because n P(|eps|>n) -> 0 (part A, closed form),
+       the centering vanishing by symmetry.  A theorem, not a simulation.
+   B3  Monte Carlo, illustration only, tested against the rate the theory
+       predicts.  Spread of the mean is ~ sqrt(2/ln n), so over the reachable
+       range the median can fall only by about 1.34x -- the size of
+       the MC error itself, which is why monotone decay is not testable here
+       and median * sqrt(ln n) is.  It must be flat for the witness law and
+       must CLIMB for Cauchy, whose mean is Cauchy(0,1) exactly at every n.
+      law                            1000     4000    16000    64000   256000    drop
+      witness  1/(x(1+ln x))       0.2232   0.2480   0.1761   0.1704   0.1706   1.31x
+        x sqrt(ln n)               0.5865   0.7143   0.5478   0.5668   0.6020   1.03x
+      cauchy                       0.9193   1.0386   0.9232   0.9704   0.9291   0.99x
+        x sqrt(ln n)               2.4162   2.9911   2.8724   3.2281   3.2788   1.36x
+      witness decays at the predicted rate (1.31x observed against 1.34x predicted): yes
+      Cauchy pinned at 1, rescaled column climbs: yes
+   The proposition predicts 'does not converge' on BOTH rows.  It is right on
+   Cauchy and wrong on the witness law, which has E|eps| = infinity all the same.
+   -> claim as stated REFUTED (B1, B2 exact); MC consistent [ok]
+
+C. the repair:  limsup_n ||S_n||/n = infinity  a.s.
+   C1  Borel-Cantelli series sum_{n<=N} P(|eps| > cn).  It grows like
+       ln(1+ln N)/c, so the testable content is that it keeps increasing,
+       not that it passes any fixed level:
+                   N=1e4     N=1e6     N=1e8   increasing
+      c=1          2.963     3.336     3.606   yes
+      c=3          0.658     0.772     0.857   yes
+   C2  the mechanism on paths:  max_{n in (N/10, N]} |eps_n| / n.  On any
+       path where S_n/n converges, eps_n/n -> 0; under E|eps| = inf it does
+       not.  Against a finite-mean control the two decay rates separate --
+       1/ln N against a power of N:
+      law                              10,000    100,000  1,000,000 10,000,000     drop
+      witness (E|eps| = inf)           0.5178     0.4012     0.2491     0.3219    1.61x
+      pareto-1.5 (E|eps| < inf)        0.1548     0.0781     0.0330     0.0193    8.01x
+       exceedance counts #{n<=N : |eps_n| > n}, observed against their exact
+       expectation -- an agreement check, since the expectation rises only
+       from 2.96 to 3.34 across four decades and cannot be resolved as growth:
+                                          2.0        3.0        3.0        2.0   observed
+                                        2.963      3.167      3.336      3.480   expected
+   Growth is log-log slow by construction, so these numbers ILLUSTRATE the
+   theorem; Borel-Cantelli plus z_n/n -> 0 on any convergent path PROVES it.
+   -> [ok]
+
+D. scope of the repaired hypothesis:  inf_x ||t(x)|| > 0 ?
+   design: ||X|| over [1.492, 12865.9]
+      feature                                     inf ||t||  sup ||t||   bounded below
+      spatial sign  x/||x||         (theta=1)        1.0000     1.0000   yes
+      SSCM direction               (theta=2)         1.0000     1.0000   yes
+      CF  e^{i<u,x>} in H_pi                         1.0000     1.0000   yes
+      contrast  t(x)=x/(1+||x||^2)                   0.0001     0.4625   NO
+   Every feature the manuscript competes with is bounded away from zero, so
+   the repaired proposition still closes the direction it was written to close.
+   -> [ok]
+
+==============================================================================
+ALL PASS
+==============================================================================

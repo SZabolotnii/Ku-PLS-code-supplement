@@ -1,0 +1,13 @@
+WHAT THE RECALIBRATED RULE PICKS
+                        application    kappa   th (iid)   th (dep)
+           Treasury curve x S&P 500   0.0966       0.50       0.75
+            CP term structure x VIX   0.0777       0.75       1.00
+         CP term structure x NASDAQ   0.0777       1.00       1.00
+
+THE TEST AT THE RECALIBRATED PICK, against the block-bootstrap null
+                    application   theta    asym p    boot p   asym/boot
+             Treasury x S&P 500    0.75    0.0000    0.0000       1.43x
+                       CP x VIX    1.00    0.0017    0.0010       1.00x
+                    CP x NASDAQ    1.00    0.8718    0.8689       1.07x
+
+wrote ../results/selector_recalibrated.json

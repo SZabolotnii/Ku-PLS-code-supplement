@@ -1,0 +1,38 @@
+==============================================================================
+error tail index 4.0   --   E eps^2 < inf   (index 4)
+==============================================================================
+   building the population reference (n = 3,000,000) ...
+   median of sqrt(n)||rhat - r||   --   bounded in n <=> sqrt(n) CLT
+                route      n=2000     n=8000    n=32000   n32/n2
+       theta=0  (BCT)     14.2974    18.1374    23.1799     1.62
+              theta=1      1.7912     1.7214     1.7804     0.99
+      theta=2  (sign)      1.2611     1.2961     1.2476     0.99
+            CF  r_phi      8.8318     8.7935     8.9793     1.02
+
+==============================================================================
+error tail index 2.5   --   E eps^2 < inf   (index 2.5, near the FRED value)
+==============================================================================
+   building the population reference (n = 3,000,000) ...
+   median of sqrt(n)||rhat - r||   --   bounded in n <=> sqrt(n) CLT
+                route      n=2000     n=8000    n=32000   n32/n2
+       theta=0  (BCT)     13.7661    16.1692    19.3735     1.41
+              theta=1      2.2373     2.2757     2.3581     1.05
+      theta=2  (sign)      1.8407     1.8123     1.8604     1.01
+            CF  r_phi      9.5989    10.0661    10.2195     1.06
+
+==============================================================================
+error tail index 1.6   --   E eps^2 = inf   (index 1.6)
+==============================================================================
+   building the population reference (n = 3,000,000) ...
+   median of sqrt(n)||rhat - r||   --   bounded in n <=> sqrt(n) CLT
+                route      n=2000     n=8000    n=32000   n32/n2
+       theta=0  (BCT)     18.3640    22.8758    30.7400     1.67
+              theta=1      5.8865     7.0753     8.6524     1.47
+      theta=2  (sign)      5.0624     6.1024     7.2221     1.43
+            CF  r_phi     18.8467    22.3075    26.3693     1.40
+
+READ-OFF: the CF cross element tracks theta=1, not theta=2.  Bounding
+the X-feature does nothing for the response side -- rhat_phi still
+carries the unbounded factor Y.  Only theta=2 divides it out.
+
+wrote two-moments/results/a0_3b_response_side.json

@@ -1,0 +1,47 @@
+calibrating the local departure so the table is informative ...
+   c =   4.47 -> theta=0 size-corrected power at index 4.0 = 1.000
+   c =   1.50 -> theta=0 size-corrected power at index 4.0 = 0.987
+   c =   0.86 -> theta=0 size-corrected power at index 4.0 = 0.673
+   c =   0.66 -> theta=0 size-corrected power at index 4.0 = 0.467
+   c =   0.75 -> theta=0 size-corrected power at index 4.0 = 0.533
+   c =   0.70 -> theta=0 size-corrected power at index 4.0 = 0.447
+   c =   0.73 -> theta=0 size-corrected power at index 4.0 = 0.513
+   fixed c = 0.716
+
+================================================================================================
+LOCAL POWER, H1: beta = b + c*v/sqrt(n),  c = 0.72, n = 1000, R = 500, nominal 5%
+s.e. on size = 0.0097; tolerance [0.031, 0.069]
+================================================================================================
+
+   size
+       theta |   idx 1.2   idx 1.5   idx 1.8   idx 2.5   idx 4.0
+   -------------------------------------------------------------
+      0.0(BCT)|    0.018*    0.038     0.038     0.038     0.054 
+      0.5     |    0.044     0.038     0.036     0.050     0.058 
+      1.0     |    0.054     0.038     0.058     0.042     0.044 
+      2.0(sgn)|    0.042     0.056     0.078*    0.060     0.064 
+
+   power, raw
+       theta |   idx 1.2   idx 1.5   idx 1.8   idx 2.5   idx 4.0
+   -------------------------------------------------------------
+      0.0(BCT)|     0.280     0.548     0.688     0.676     0.494
+      0.5     |     0.580     0.822     0.862     0.716     0.488
+      1.0     |     0.936     0.912     0.774     0.556     0.360
+      2.0(sgn)|     0.376     0.322     0.306     0.260     0.242
+
+   power, size-corrected
+       theta |   idx 1.2   idx 1.5   idx 1.8   idx 2.5   idx 4.0
+   -------------------------------------------------------------
+      0.0(BCT)|     0.902     0.932     0.874     0.746     0.492
+      0.5     |     1.000     1.000     0.956     0.734     0.442
+      1.0     |     0.998     0.944     0.764     0.582     0.402
+      2.0(sgn)|     0.398     0.268     0.286     0.222     0.224
+
+   * = size outside +-2 s.e. of nominal
+
+   READ: the size row says whether a test is USABLE at that tail index.
+   The raw-power row is what a practitioner actually gets from it.  The
+   size-corrected row separates 'lost power because it is conservative'
+   from 'lost power because the statistic discriminates worse'.
+
+wrote two-moments/results/a1_7_power.json

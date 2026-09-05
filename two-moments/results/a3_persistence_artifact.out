@@ -1,0 +1,51 @@
+========================================================================================
+MEASURED lag-1 Spearman autocorrelation of ||dX_t||
+   Spearman, not Pearson: it is invariant to the marginal, so it is
+   comparable across two series with different tail indices -- which a
+   Pearson autocorrelation at these tails would not be.
+========================================================================================
+   Treasury curve           lean/replication/data/fred_cache.npz     panel   (2494, 11)   n =  2494   rho_S = +0.3034
+   commercial-paper curve   data/cp_nasdaq.npz                       panel    (4396, 6)   n =  4396   rho_S = +0.5906
+
+========================================================================================
+INVERTING THE DESIGN -- which phi reproduces each measured rho_S?
+   The copula-AR(1) design drives a Gaussian AR(1) with parameter phi
+   through Phi and then the inverse Pareto CDF.  Both maps are monotone,
+   so Spearman is preserved EXACTLY and phi maps to rho_S through the
+   Gaussian-copula relation rho_S = (6/pi) arcsin(phi/2), not phi = rho_S.
+   That distinction was never checked when phi = 0.3 / 0.6 were fixed.
+========================================================================================
+      phi    rho_S (simulated)    (6/pi)arcsin(phi/2)
+     0.00              -0.0031                 0.0000
+     0.05               0.0492                 0.0478
+     0.10               0.0940                 0.0955
+     0.15               0.1473                 0.1434
+     0.20               0.1884                 0.1913
+     0.25               0.2391                 0.2394
+     0.30               0.2850                 0.2876
+     0.35               0.3302                 0.3360
+     0.40               0.3743                 0.3846
+     0.45               0.4382                 0.4334
+     0.50               0.4780                 0.4826
+     0.55               0.5274                 0.5321
+     0.60               0.5820                 0.5819
+     0.65               0.6350                 0.6322
+     0.70               0.6875                 0.6829
+     0.75               0.7356                 0.7341
+     0.80               0.7836                 0.7859
+     0.85               0.8413                 0.8384
+     0.90               0.8908                 0.8915
+     0.95               0.9468                 0.9453
+
+   series                       rho_S   phi used   phi implied   kappa impact
+   Treasury curve             +0.3034       0.30         0.320             ok
+   commercial-paper curve     +0.5906       0.60         0.608             ok
+
+   READING.  If phi_implied differs materially from the phi that was
+   used, kappa was calibrated at the wrong persistence and every
+   theta-hat downstream inherits it.  kappa is DECREASING in phi (more
+   persistence -> a larger max-to-sum ratio at the same n), so a phi that
+   is too small makes kappa too LARGE, which makes the selector too
+   PERMISSIVE -- it would accept a smaller theta than it should.
+
+wrote two-moments/results/a3_persistence_artifact.json

@@ -1,0 +1,28 @@
+==========================================================================================
+A -- NON-MDS BY CONSTRUCTION: persistent direction AND persistent error
+    n = 1000, R = 600, index 2.5, s.e. 0.0089, tolerance [0.032, 0.068]
+    'psi acf1' is the realised lag-1 autocorrelation of psi -- the term
+    the plug-in Vhat omits.  If it is ~0 the design still cannot answer.
+==========================================================================================
+     rho_d   rho_e |   size th=0.0   size th=1.0   psi acf1
+      0.00    0.00 |        0.025*        0.052     -0.0011
+      0.60    0.00 |        0.047         0.057     -0.0007
+      0.00    0.60 |        0.030*        0.055     -0.0013
+      0.60    0.60 |        0.187*        0.293*     0.3201
+      0.85    0.85 |        0.593*        0.850*     0.6738
+   * outside +-2 s.e.
+
+==========================================================================================
+B -- IS THE SIGN OF psi PREDICTABLE ON THE REAL DATA?
+    Ljung-Box(10) on sign(psi_j,t): the sign process is BOUNDED, so the
+    chi^2(10) calibration is valid where it was not for psi itself.
+    chi^2(10) 95% = 18.31.  Contrast with ||psi||^2, which should and does
+    show dependence -- magnitude clusters, and that is not the issue.
+==========================================================================================
+              application  theta   median LB(sign)   frac rej   LB(||psi||^2)
+       Treasury x S&P 500    0.0             40.32     72.7%           865.5
+       Treasury x S&P 500    1.0             40.32     72.7%          2713.7
+                 CP x VIX    0.0             10.43      0.0%             8.8
+                 CP x VIX    1.0             10.43      0.0%           716.2
+
+wrote two-moments/results/a1_8b_mds_boundary.json

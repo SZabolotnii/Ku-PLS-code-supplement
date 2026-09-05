@@ -1,0 +1,55 @@
+two-moments/code/twomoments.py:94: RuntimeWarning: invalid value encountered in scalar divide
+  res, d = new, new + (new @ new) / (res @ res) * d
+======================================================================================
+(1) ALGEBRAIC IDENTITY   max_k || Ahat(betahat_m - b) - (xihat - Rhat) ||
+======================================================================================
+     theta     H0: b = beta   H1: b = beta + delta
+       0.0        1.555e-15              1.780e-15
+       0.5        1.039e-15              1.334e-15
+       1.0        7.079e-16              7.773e-16
+       1.5        3.678e-16              5.555e-16
+       2.0        1.789e-16              3.612e-16
+   -> identity holds for EVERY estimator, m and hypothesis: it uses only
+      the definition of Rhat, never how betahat was produced.
+
+======================================================================================
+(2) IS xihat EXACTLY THE i.i.d. MEAN OF w(X_k) eps_k X_k UNDER H0?
+======================================================================================
+     theta    max || xihat - mean(w eps X) ||
+       0.0                          4.657e-15
+       0.5                          3.583e-15
+       1.0                          2.121e-15
+       1.5                          1.095e-15
+       2.0                          9.303e-16
+   -> exact.  No remainder, no linearisation, no nuisance estimated:
+      under a simple null the residuals ARE the errors.
+
+======================================================================================
+(3)+(4) IS THE OVERFITTING CONDITION ATTAINABLE, AND AT WHAT COST?
+   rhat lies in Range(Ahat) = span{X_k} by construction, so CG reaches an
+   exact solution in at most rank(Ahat) steps.  The question is whether
+   floating point gets there before the conditioning stops it.
+======================================================================================
+
+   n = 400
+     theta  rank(Ahat)   CG steps to   ||Rhat|| at   cond(Ahat)
+                           o(n^-1/2)     that step             
+       0.0          20           7.5      1.90e-03    5.749e+02
+       0.5          20           7.0      1.81e-03    3.954e+02
+       1.0          20           7.0      1.90e-03    2.888e+02
+       1.5          20           7.0      1.65e-03    2.347e+02
+       2.0          20           6.0      2.02e-03    1.807e+02
+
+   n = 2000
+     theta  rank(Ahat)   CG steps to   ||Rhat|| at   cond(Ahat)
+                           o(n^-1/2)     that step             
+       0.0          20           8.0      7.77e-04    4.378e+02
+       0.5          20           7.0      7.97e-04    3.329e+02
+       1.0          20           7.0      7.64e-04    2.608e+02
+       1.5          20           7.0      8.29e-04    2.011e+02
+       2.0          20           7.0      8.09e-04    1.606e+02
+
+   -> the condition is attainable for every theta, and the number of
+      steps tracks the conditioning.  This is where A0.3's conditioning
+      result stops being a curiosity: it governs whether the regime the
+      theorem lives in is numerically reachable.

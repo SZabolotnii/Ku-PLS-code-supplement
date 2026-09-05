@@ -1,0 +1,40 @@
+============================================================================================
+Repair B7: does the 26.95 ratio depend on the mean block length?
+seed 20260905   n=4396   B=999   shipped mb=16
+============================================================================================
+
+   The stationary bootstrap imposes H0 by resampling X-blocks and Y-blocks with
+   INDEPENDENT starts: each series keeps its own dependence, the cross-relation
+   is destroyed.  mb is the only tuning parameter, and the shipped run takes the
+   n^(1/3) rule of thumb.  A headline that moved with mb would be an artefact.
+
+   theta = 0.0:  statistic 2.204e+05   asymptotic 95% 1.934e+06
+        mean block      boot 95%   asym/boot    boot p
+                 2      7.74e+04      24.99x    0.0010
+                 4     7.986e+04      24.22x    0.0050
+                 8      7.65e+04      25.29x    0.0000
+                16     8.062e+04      23.99x    0.0030  <- shipped
+                32     7.829e+04      24.71x    0.0020
+                64     8.492e+04      22.78x    0.0040
+               128     9.171e+04      21.09x    0.0040
+      ratio ranges 21.09x to 25.29x across the grid
+
+   theta = 1.0:  statistic 299.2   asymptotic 95% 152.1
+        mean block      boot 95%   asym/boot    boot p
+                 2         144.3       1.05x    0.0020
+                 4         149.7       1.02x    0.0000
+                 8         155.6       0.98x    0.0010
+                16         161.6       0.94x    0.0020  <- shipped
+                32         147.8       1.03x    0.0040
+                64         150.4       1.01x    0.0030
+               128         160.5       0.95x    0.0030
+      ratio ranges 0.94x to 1.05x across the grid
+
+============================================================================================
+   baseline (theta=0) ratio stays above 5x at every mb: yes   (range 21.09-25.29)
+   reweighted (theta=1) ratio stays within [0.5, 2] at every mb: yes   (range 0.94-1.05)
+   The SIZE of the ratio moves with mb, as it must -- a longer block means a
+   wider bootstrap null.  What the grid decides is whether the CONTRAST between
+   the two thetas is a property of the data or of one arbitrary mb.
+ALL PASS
+============================================================================================

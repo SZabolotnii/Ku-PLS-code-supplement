@@ -1,0 +1,276 @@
+{
+  "seed": 20260903,
+  "quick": false,
+  "config": {
+    "part_a": {
+      "n": 2000000
+    },
+    "part_b": {
+      "ns": [
+        1000,
+        4000,
+        16000,
+        64000,
+        256000
+      ],
+      "reps": 400
+    },
+    "part_c": {
+      "ns": [
+        10000,
+        100000,
+        1000000,
+        10000000
+      ],
+      "reps": 12
+    }
+  },
+  "A_witness_law": {
+    "survival_grid": [
+      1.0,
+      2.0,
+      5.0,
+      20.0,
+      100.0,
+      1000.0
+    ],
+    "survival_empirical": [
+      1.0,
+      0.295234,
+      0.0766945,
+      0.0126295,
+      0.0017765,
+      0.000121
+    ],
+    "survival_theory": [
+      1.0,
+      0.2953080545748206,
+      0.07664485866745101,
+      0.012513350889629966,
+      0.001784067150181842,
+      0.00012645813694537057
+    ],
+    "survival_max_abs_err": 0.00011614911037003371,
+    "sample_max_abs_eps": 162337.46293538448,
+    "truncated_means": [
+      {
+        "M": 100.0,
+        "empirical": 2.546862450202904,
+        "closed_form": 2.5452827042899617,
+        "M_within_sample_range": true
+      },
+      {
+        "M": 10000.0,
+        "empirical": 3.2283227014954297,
+        "closed_form": 3.2254610408258992,
+        "M_within_sample_range": true
+      },
+      {
+        "M": 100000000.0,
+        "empirical": 3.5657946320351277,
+        "closed_form": 3.9148470151056696,
+        "M_within_sample_range": false
+      },
+      {
+        "M": 1e+16,
+        "empirical": 3.5657946320351277,
+        "closed_form": 4.6069766131647,
+        "M_within_sample_range": false
+      },
+      {
+        "M": 1e+32,
+        "empirical": 3.5657946320351277,
+        "closed_form": 5.299858802159781,
+        "M_within_sample_range": false
+      }
+    ],
+    "feller_nP": {
+      "witness": {
+        "1000.0": 0.12645813694537056,
+        "1000000.0": 0.06749683016913897,
+        "1000000000000.0": 0.03492715107683188,
+        "1e+60": 0.0071862257287259165
+      },
+      "cauchy": {
+        "1000.0": 0.636619560161118,
+        "1000000.0": 0.6366197723673691,
+        "1000000000000.0": 0.6366197723675814,
+        "1e+60": 0.6366197723675814
+      }
+    },
+    "pass": true
+  },
+  "B_claim_refuted": {
+    "B1_degenerate_witness": {
+      "t": "identically zero",
+      "average": 0.0,
+      "hypotheses_satisfied": true,
+      "converges": true
+    },
+    "laws": {
+      "witness  1/(x(1+ln x))": {
+        "n": [
+          1000,
+          4000,
+          16000,
+          64000,
+          256000
+        ],
+        "median_abs_mean": [
+          0.22315935872344872,
+          0.2480160446173486,
+          0.1760741061003231,
+          0.17037223680068087,
+          0.1705910789335194
+        ],
+        "q90_abs_mean": [
+          1.0229622836947958,
+          1.1750536095186739,
+          0.8020189210587967,
+          0.7155057302240356,
+          0.9526229368480394
+        ],
+        "median_times_sqrt_log_n": [
+          0.5865210136274024,
+          0.7142711224226639,
+          0.5478237892597583,
+          0.5667697782058582,
+          0.6019939642126932
+        ],
+        "rescaled_spread": 1.3038337078932187,
+        "rescaled_drift": 1.0263808972326443,
+        "total_drop_factor": 1.308153744724339,
+        "predicted_drop_factor": 1.3426640142284108,
+        "decays_at_predicted_rate": true
+      },
+      "cauchy": {
+        "n": [
+          1000,
+          4000,
+          16000,
+          64000,
+          256000
+        ],
+        "median_abs_mean": [
+          0.919315041856779,
+          1.0385895303776485,
+          0.9232223194285719,
+          0.9703696163524728,
+          0.9291439968485937
+        ],
+        "q90_abs_mean": [
+          5.556247155611366,
+          5.925973495979228,
+          5.326902108576447,
+          9.269294242194876,
+          6.079321838134472
+        ],
+        "median_times_sqrt_log_n": [
+          2.416199765392582,
+          2.9910746731882174,
+          2.8724447936164488,
+          3.2280856468487524,
+          3.278829593458927
+        ],
+        "rescaled_spread": 1.3570192499899467,
+        "rescaled_drift": 1.3570192499899467,
+        "total_drop_factor": 0.989421494380686,
+        "flat_at_exact_stability_value": true
+      }
+    },
+    "B2_refutation_is_by_theorem": "Kolmogorov-Feller; its hypothesis n P(|eps|>n) -> 0 is exact, see part A",
+    "claim_as_stated_refuted": true,
+    "monte_carlo_consistent": true,
+    "pass": true
+  },
+  "C_repair": {
+    "borel_cantelli_partial_sums": {
+      "c=1": {
+        "N=1e4": 2.963258291899979,
+        "N=1e6": 3.3355271026660893,
+        "N=1e8": 3.6061909425169776,
+        "increasing": true
+      },
+      "c=3": {
+        "N=1e4": 0.6582652378614297,
+        "N=1e6": 0.7721345284160671,
+        "N=1e8": 0.8568540589496955,
+        "increasing": true
+      }
+    },
+    "observed": {
+      "witness (E|eps| = inf)": {
+        "10000": {
+          "median_tail_max_eps_over_n": 0.5177779915038688,
+          "median_exceedances": 2.0,
+          "expected_exceedances": 2.963258291899979
+        },
+        "100000": {
+          "median_tail_max_eps_over_n": 0.4012009852573717,
+          "median_exceedances": 3.0,
+          "expected_exceedances": 3.166614973097912
+        },
+        "1000000": {
+          "median_tail_max_eps_over_n": 0.2490610210917154,
+          "median_exceedances": 3.0,
+          "expected_exceedances": 3.3355271026660893
+        },
+        "10000000": {
+          "median_tail_max_eps_over_n": 0.32191892838722835,
+          "median_exceedances": 2.0,
+          "expected_exceedances": 3.479988558360304
+        },
+        "drop_factor_over_range": 1.6084111428236567
+      },
+      "pareto-1.5 (E|eps| < inf)": {
+        "10000": {
+          "median_tail_max_eps_over_n": 0.1548491242447025
+        },
+        "100000": {
+          "median_tail_max_eps_over_n": 0.07806155688061214
+        },
+        "1000000": {
+          "median_tail_max_eps_over_n": 0.033026561047330046
+        },
+        "10000000": {
+          "median_tail_max_eps_over_n": 0.01933198242163755
+        },
+        "drop_factor_over_range": 8.009997157424776
+      }
+    },
+    "sums_increase_without_settling": true,
+    "decay_rates_separate": true,
+    "counts_match_expectation": true,
+    "pass": true
+  },
+  "D_scope": {
+    "features": {
+      "spatial sign  x/||x||         (theta=1)": {
+        "inf": 1.0,
+        "sup": 1.0,
+        "bounded_below": true
+      },
+      "SSCM direction               (theta=2)": {
+        "inf": 1.0,
+        "sup": 1.0,
+        "bounded_below": true
+      },
+      "CF  e^{i<u,x>} in H_pi": {
+        "inf": 1.0,
+        "sup": 1.0,
+        "bounded_below": true
+      },
+      "contrast  t(x)=x/(1+||x||^2)": {
+        "inf": 7.772510676684431e-05,
+        "sup": 0.4625252918929755,
+        "bounded_below": false
+      }
+    },
+    "norm_x_range": [
+      1.491641605822804,
+      12865.855520257504
+    ],
+    "pass": true
+  },
+  "all_pass": true
+}

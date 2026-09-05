@@ -1,0 +1,35 @@
+====================================================================================================
+Repair A5: the calibrating design matches the RADIAL process, not ||X_t||
+seed 20260905   R=3000   reps=40
+====================================================================================================
+
+A/B. what the shipped phi actually reproduces, and the phi that hits the target
+   application                 n  phi_ship  rho(R_t)  rho(||X||)   target  phi_fixed  rho at it
+   Treasury x S&P 500       2494     0.320    0.3008      0.0676   0.3034      0.995     0.1559
+   CP x VIX / NASDAQ        4396     0.608    0.5900      0.1263   0.5906      0.995     0.1687
+   attenuation of ||X_t|| against R_t: 77.5% to 78.6%
+   at the calibration index 4: cv(R) = 0.34, cv(||Z||) = 0.42  -> the independent factor carries MORE of the rank variation
+   Treasury x S&P 500: target 0.3034 is UNREACHABLE -- the ceiling at phi=0.995 is 0.1851
+   CP x VIX / NASDAQ: target 0.5906 is UNREACHABLE -- the ceiling at phi=0.995 is 0.2152
+
+C. kappa recalibrated at the corrected phi (index 4, p95 of R_n(0))
+   application                phi    kappa                95% CI     s.e.
+   Treasury x S&P 500       0.320   0.0962   [0.0891, 0.1049]   0.0040
+                            0.995   0.0495   [0.0473, 0.0517]   0.0012
+                                             change -48.5%   CIs DISJOINT
+   CP x VIX / NASDAQ        0.608   0.0749   [0.0705, 0.0783]   0.0022
+                            0.995   0.0405   [0.0381, 0.0428]   0.0011
+                                             change -46.0%   CIs DISJOINT
+
+D. does any pick move?  theta-hat = min{theta : R_n(theta) <= kappa}
+   application             kappa_ship  th_ship   margin   kappa_fix   th_fix   margin
+   CP x VIX                    0.0749     1.00    16.07      0.0405     1.00     1.27
+   CP x NASDAQ                 0.0749     1.00    20.57      0.0405     1.00    10.25
+   Treasury x S&P 500          0.0962     0.75     3.15      0.0495     1.00     3.20   <-- CHANGED
+
+====================================================================================================
+   1 pick(s) MOVE under the corrected phi: Treasury x S&P 500
+   The correction must be APPLIED to the calibration, not noted in prose.
+   kappa difference resolved by the calibration in: Treasury x S&P 500, CP x VIX / NASDAQ
+ALL PASS
+====================================================================================================

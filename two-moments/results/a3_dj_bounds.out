@@ -1,0 +1,21 @@
+
+== Gaussian (tab:shrink design) ==
+  theta=0.5  max z_j= 3.20  (#z>4: 0)   d_1=0.7987  min d_j=0.7987  lower bound=0.3108  [ok]
+  theta=1.0  max z_j= 2.91  (#z>4: 0)   d_1=0.6360  min d_j=0.6360  lower bound=0.1867  [ok]
+  theta=1.5  max z_j= 2.54  (#z>4: 0)   d_1=0.5055  min d_j=0.5055  lower bound=0.1086  [ok]
+  theta=2.0  max z_j= 2.99  (#z>4: 0)   d_1=0.4012  min d_j=0.4012  lower bound=0.0612  [ok]
+
+== Laplace ==
+  theta=0.5  max z_j= 2.68  (#z>4: 0)   d_1=0.7037  min d_j=0.7037  lower bound=0.2545  [ok]
+  theta=1.0  max z_j= 2.53  (#z>4: 0)   d_1=0.5000  min d_j=0.5000  lower bound=0.1235  [ok]
+  theta=1.5  max z_j= 2.77  (#z>4: 0)   d_1=0.3619  min d_j=0.3619  lower bound=0.0574  [ok]
+  theta=2.0  max z_j= 2.61  (#z>4: 0)   d_1=0.2658  min d_j=0.2658  lower bound=0.0257  [ok]
+
+== centred exponential (asymmetric, independent) ==
+  theta=0.5  max z_j= 2.73  (#z>4: 0)   d_1=0.7070  min d_j=0.7070  lower bound=0.2343  [ok]
+  theta=1.0  max z_j= 2.30  (#z>4: 0)   d_1=0.5261  min d_j=0.5261  lower bound=0.1057  [ok]
+  theta=1.5  max z_j= 4.16  (#z>4: 1)   d_1=0.4091  min d_j=0.4091  lower bound=0.0462  [ok]
+  theta=2.0  max z_j= 2.34  (#z>4: 0)   d_1=0.3296  min d_j=0.3296  lower bound=0.0196  [ok]
+
+== refutation design (dependent), same statistic ==
+  theta=1: z_1 = 155.2  (d_1=1.083)  -> the statistic sees a real violation at once

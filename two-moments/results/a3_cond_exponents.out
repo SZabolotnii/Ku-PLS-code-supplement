@@ -1,0 +1,15 @@
+==============================================================================
+cond(C*C) as a power of cond(K), derived from a0_3_bounded_feature_family
+   exponent = log(cond(C*C)) / log(cond(K)),
+   cond(C*C) = ratio_cf * cond(K)   [ratio_cf is what the source stores]
+==============================================================================
+      decay       cond(K)    ratio_cf       cond(C*C)   exponent
+   j^-0.5           11.91       22.38         266.688     2.2545
+   j^-1.0           140.5       146.1         20533.4     2.0079
+   j^-1.5            1815       782.9     1.42123e+06     1.8879
+
+   An exponent near 2 is the claim: the bounded-feature route composes
+   the covariance twice, so it squares the ill-posedness.  Reported to
+   three significant figures in the manuscript.
+
+wrote two-moments/results/a3_cond_exponents.json

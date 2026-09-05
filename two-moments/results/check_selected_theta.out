@@ -1,0 +1,17 @@
+Test at the SELECTED theta, against a dependence-respecting null.
+B = 999.  'asym p' uses the plug-in weighted-chi^2; 'boot p' the block
+bootstrap.  A rule that works has the two agree at theta-hat.
+
+   CP term structure x VIX  (theta-hat = 0.75)   (n = 4396, mean block = 16)
+                theta    statistic    asym p    boot p     boot 95%     asym 95%   asym/boot
+            0.00  BCT    2.204e+05    0.5919    0.0030    8.204e+04    1.898e+06      23.13x
+                 0.50         1466    0.5401    0.0791         1656         7484       4.52x
+       0.75  SELECTED          685    0.0620    0.0100        465.6        746.6       1.60x
+                 1.00        299.2    0.0013    0.0000          155        150.8       0.97x
+
+   Treasury curve x S&P 500  (theta-hat = 0.50)   (n = 2494, mean block = 14)
+                theta    statistic    asym p    boot p     boot 95%     asym 95%   asym/boot
+            0.00  BCT         7827    0.0022    0.0000         1279         3505       2.74x
+       0.50  SELECTED        346.6    0.0001    0.0000        49.63        93.27       1.88x
+
+wrote two-moments/results/check_selected_theta.json
