@@ -29,6 +29,7 @@ code   pilot_offset                pilot_offset
 code   section43_hypotheses        section43_hypotheses
 code   split_stopping_rule         split_stopping_rule
 code   split_rule_tables           split_rule_tables
+code   shrink_table                shrink_table
 code   run_pilot                   a2_pilot_estimation
 code   run_size_confirm            a2_size_confirm
 code   run_inference_pilot         a2_pilot_inference
@@ -56,6 +57,7 @@ code   probe_heavy_curves          probe_heavy_curves
 code   empirical2_blockboot        empirical2_blockboot
 code   theta_selector_apply        theta_selector_apply
 code   check_selected_theta        check_selected_theta
+code   selector_on_applications    selector_on_applications
 gates  a0_4_tail_index             a0_4_tail_index
 gates  a1_8_mixing                 a1_8_mixing
 gates  a1_8b_mds_boundary          a1_8b_mds_boundary

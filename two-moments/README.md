@@ -70,9 +70,9 @@ are libraries; everything else is a script with a `__main__`.
 | 8 | Estimation error at tail index 1.5 across $n$ | `code/split_rule_tables.py` | `split_rule_tables` |
 | 9 | The two stopping thresholds compared | `code/split_stopping_rule.py` (part D) | `split_stopping_rule` |
 | 10 | Commercial paper against VIX, bootstrap null | `code/empirical2_blockboot.py` | `empirical2_blockboot` |
-| 11 | What the rule picks on the applications | driver not retained — see below | `selector_recalibrated` |
+| 11 | What the rule picks on the applications | `code/selector_on_applications.py` | `selector_on_applications` |
 | A.1 | Off-diagonal mass under the two hypotheses | `code/section43_hypotheses.py` | `section43_hypotheses` |
-| A.2 | Shrinkage factors on the population diagonal | driver not retained — see below | — |
+| A.2 | Shrinkage factors on the population diagonal | `code/shrink_table.py` | `shrink_table` |
 
 Numbers quoted in the text but not in a table follow the same convention: the
 script's name is the artifact's stem. The exceptions are
@@ -81,23 +81,40 @@ script's name is the artifact's stem. The exceptions are
 `run_dependence.py` → `dependence` and `run_theta_selector.py` →
 `theta_selector`; `run_all.sh` writes each one to its shipped name.
 
-### Three artifacts whose driver was not kept
+### Artifacts whose driver was not kept
 
 Said plainly, because a replication package that hides this is worth less than
-one that does not:
+one that does not.
 
-- **`results/selector_recalibrated.{json,out}`** (Table 11) and
-  **`results/rule_size_confirm.{json,out}`** (§6.3) were produced by
-  interactive drivers that were not retained. The experiments themselves are
-  re-run by scripts that *are* here: `gates/a3_kappa_margin.py` and
-  `gates/a3_kappa_recalibrate.py` recompute $\kappa$, the selector's ratios, the
-  picks and the margins; `code/check_selected_theta.py` re-runs the test at the
-  selected $\theta$ against the block-bootstrap null. The picks agree.
-- **Table A.2** (shrinkage factors) has no script here either.
-  `gates/a3_dj_bounds.py` recomputes the same quantity on the same design at a
-  smaller number of draws: it returns $d_1 = 0.7987$ at $\theta=\tfrac12$ and
-  $0.6360$ at $\theta=1$ against the table's $0.801$ and $0.637$ from
-  $4\times10^{6}$ draws.
+Two of the paper's tables were produced by interactive drivers that were not
+retained. Both now have one, and the tables print what the shipped script
+returns:
+
+- **Table 11** ← `code/selector_on_applications.py`. The deterministic half
+  reproduced the lost run exactly: $R_n(\theta)$ agrees to every digit recorded
+  in `results/selector_recalibrated.json`, and so does every pick. The test at
+  $\hat\theta$ is Monte Carlo — 20,000 weighted-$\chi^2$ draws and 999 bootstrap
+  replicates — so its p-values and the critical-value ratio moved when the seed
+  did, and the table was updated to the shipped seed. The script also prints
+  $R_n$ under both residual conventions in use in the paper (the pre-test's own,
+  under $H_0:\beta=0$, and the OLS residuals `gates/a3_kappa_margin.py` uses) and
+  fails if they ever disagree on a pick.
+- **Table A.2** ← `code/shrink_table.py`. It reproduced the lost run to within
+  Monte Carlo error, which is the point: at $4\times10^{6}$ draws each cell has a
+  standard error near $9\times10^{-4}$, so the third decimal is noise. The
+  $\theta=0$ row, where $d_j\equiv1$ exactly, is the control — it returns a tail
+  slope of $-0.0008$, which is what a slope of zero reads at this many draws.
+  The table's earlier caption claimed the slope was zero to $4\times10^{-4}$;
+  that was a property of one seed, and the caption now states the claim against
+  the $\theta=0$ row instead.
+
+One artifact still has no driver: **`results/rule_size_confirm.{json,out}`**
+(§6.3, the level of the selection rule under dependence). The same experiment is
+re-run by `gates/a3_kappa_recalibrate.py`, whose step 2 reports the rule's size
+at both the shipped and the recalibrated $\kappa$.
+
+`results/selector_recalibrated.{json,out}` is kept as the record of the
+superseded run; nothing in the paper reads it any more.
 
 ## Data
 

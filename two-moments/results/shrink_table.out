@@ -1,0 +1,28 @@
+================================================================================================
+SHRINKAGE FACTORS ON THE POPULATION DIAGONAL  (tab:shrink)
+   d_j(theta) = E[||Z||^-theta Z_j^2] / (sigma_j^2 E||Z||^-theta),  J = 200, sigma_j = 1/j
+   4,000,000 draws, seed 20260905.  d_j(0) = 1 exactly, so the theta = 0 row is
+   the Monte Carlo noise floor of every other row.
+================================================================================================
+    theta      d_1      d_2      d_5     d_10     d_25     d_50    d_100    d_200   tail slope
+      0.0    1.000    1.001    1.000    1.000    1.000    1.000    1.000    1.000      -0.0008
+      0.5    0.799    0.911    0.979    0.994    0.999    1.000    1.000    1.000      -0.0008
+      1.0    0.636    0.821    0.953    0.987    0.997    1.000    1.000    1.001      -0.0009
+      1.5    0.505    0.734    0.925    0.978    0.996    0.999    1.000    1.001      -0.0009
+      2.0    0.401    0.651    0.893    0.968    0.994    0.999    1.001    1.001      -0.0008
+
+   standard error of each cell (delta method, same draws)
+    theta      d_1      d_2      d_5     d_10     d_25     d_50    d_100    d_200
+      0.0   0.0007   0.0007   0.0007   0.0007   0.0007   0.0007   0.0007   0.0007
+      0.5   0.0005   0.0006   0.0007   0.0007   0.0007   0.0007   0.0007   0.0007
+      1.0   0.0004   0.0005   0.0007   0.0007   0.0008   0.0008   0.0008   0.0008
+      1.5   0.0003   0.0005   0.0007   0.0008   0.0008   0.0008   0.0008   0.0008
+      2.0   0.0003   0.0004   0.0007   0.0008   0.0009   0.0009   0.0009   0.0009
+
+   Largest standard error over the printed cells: 0.0009.  The third
+   decimal is therefore not resolved, and the table should not be read as
+   though it were.  What the table carries is the SHAPE: d_j well below 1 at
+   small j, indistinguishable from 1 by j = 50, and a tail slope of zero.
+
+   tail slope = OLS of log d_j on log j over j in [100, 200]
+   largest magnitude over the five rows: 0.00086
