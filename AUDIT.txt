@@ -1,12 +1,9 @@
-# Axiom audit — Ku-PLS Lean development
-# Generated 2026-06-13 · Lean 4 / Mathlib v4.26.0
-
 'CFPLS.ecfGram_isHermitian' depends on axioms: [propext, Classical.choice, Quot.sound]
 'CFPLS.ecfQuadForm_eq_normSq' depends on axioms: [propext, Classical.choice, Quot.sound]
 'CFPLS.ecfGram_posSemidef' depends on axioms: [propext, Classical.choice, Quot.sound]
 'CFPLS.normalSystem_iff_starProjection' depends on axioms: [propext, Classical.choice, Quot.sound]
 'CFPLS.energy_eq_dotProduct' depends on axioms: [propext, Classical.choice, Quot.sound]
 'CFPLS.krylov_residual_orthogonal' depends on axioms: [propext, Classical.choice, Quot.sound]
-
-# lake build:
-Build completed successfully (0 jobs).
+'KuPLS.exactness_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KuPLS.weighted_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KuPLS.integral_is_junk_off_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]

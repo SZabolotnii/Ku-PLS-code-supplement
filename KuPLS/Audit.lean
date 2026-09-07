@@ -1,5 +1,6 @@
 import KuPLS.Core
 import KuPLS.Krylov
+import KuPLS.Exactness
 
 /-!
 # Axiom audit
@@ -21,3 +22,11 @@ open CFPLS
 #print axioms normalSystem_iff_starProjection
 #print axioms energy_eq_dotProduct
 #print axioms krylov_residual_orthogonal
+
+-- Paper 2, lem:exact as repaired 2026-09-07: the FIRST measure-theoretic
+-- statement in this kernel.  The decomposition r_theta = A_theta beta + E[noise]
+-- with the noise term Bochner-integrable BY HYPOTHESIS -- the hypothesis whose
+-- absence two independent referee arms refuted on the unrepaired text.
+#print axioms KuPLS.exactness_decomposition
+#print axioms KuPLS.weighted_split
+#print axioms KuPLS.integral_is_junk_off_integrable

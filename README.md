@@ -48,7 +48,7 @@ over plain HTTPS — no key, no subscription, no redistribution restriction.
 
 ## Lean development
 
-This Lean 4 / Mathlib development certifies, sorry-free, the *deterministic algebraic* facts on which paper 1's operator theory rests: the empirical-characteristic-function (ECF) Gram operator is symmetric and positive semidefinite, and the conjugate-gradient / Krylov projection identities that carry the functional-PLS machinery over to that operator. The probabilistic asymptotics (concentration, the weighted-$\chi^2$ limit) are classical and live in the manuscript, not here.
+This Lean 4 / Mathlib development certifies, sorry-free, the *deterministic algebraic* facts on which paper 1's operator theory rests — the empirical-characteristic-function (ECF) Gram operator is symmetric and positive semidefinite, and the conjugate-gradient / Krylov projection identities carry the functional-PLS machinery over to that operator — and, since 2026-09-07, one *measure-theoretic* step of paper 2: the decomposition $r_\theta = A_\theta\beta + \mathbb E[\varepsilon\,w_\theta(X)X]$ behind the Exactness lemma, with the noise term Bochner-integrable **by hypothesis**. The remaining probabilistic asymptotics (concentration, the weighted-$\chi^2$ limit, the martingale CLT) are classical and live in the manuscripts, not here.
 
 ## What is certified
 
@@ -60,16 +60,27 @@ This Lean 4 / Mathlib development certifies, sorry-free, the *deterministic alge
 | Galerkin $\leftrightarrow$ projection (Thm 4.1) | `normalSystem_iff_starProjection` | `KuPLS/Krylov.lean` |
 | CG energy $= a^{\mathsf T}Y$ (Thm 4.1) | `energy_eq_dotProduct` | `KuPLS/Krylov.lean` |
 | **CG residual $\perp$ Krylov subspace (Thm 4.1)** | `krylov_residual_orthogonal` | `KuPLS/Krylov.lean` |
+| **Paper 2, Exactness lemma — decomposition step, repaired hypotheses** | `exactness_decomposition` (`namespace KuPLS`) | `KuPLS/Exactness.lean` |
+| Paper 2, pointwise split of $w(X)\,Y\,X$ | `weighted_split` | `KuPLS/Exactness.lean` |
+| Negative control: Bochner integral is $0$ off `Integrable` (Mathlib's `integral_undef`) | `integral_is_junk_off_integrable` | `KuPLS/Exactness.lean` |
 
 ## Axiom audit
 
-`KuPLS/Audit.lean` runs `#print axioms` on all six lemmas. Every one depends on **only** the three standard Lean/Mathlib axioms — no `sorryAx`, no custom axioms:
+`KuPLS/Audit.lean` runs `#print axioms` on all nine theorems. Every one depends on **only** the three standard Lean/Mathlib axioms — no `sorryAx`, no custom axioms:
 
 ```
 'CFPLS.ecfGram_posSemidef' depends on axioms: [propext, Classical.choice, Quot.sound]
 ```
 
 The full transcript is in [`AUDIT.txt`](AUDIT.txt).
+
+### Why the paper-2 module exists, and what it does not certify
+
+On 2026-09-07 a statement-level audit refuted paper 2's Exactness lemma as originally stated: its proof asserted the noise term integrable "because $\|\varepsilon w_\theta(X)X\| = |\varepsilon|\,\|X\|^{1-\theta}$" — an identity, not an integrability proof — and two counterexamples satisfying every stated hypothesis make $r_\theta$ undefined. The repair adds $\mathbb E[|\varepsilon|\,\|X\|^{1-\theta}] < \infty$ as a hypothesis. `Exactness.lean` states the decomposition step with that hypothesis list and proves it from Mathlib's Bochner integral.
+
+Two things it deliberately does **not** do. It does not prove the joint moment *necessary* — the counterexamples do that, and they are reproduced in the audit rather than formalised. And it does not formalise conditional Fubini: the centring of the noise term is taken as a hypothesis, exactly as the paper's own proof takes it once integrability holds.
+
+The reason the hypothesis is carried *explicitly* is a property of Mathlib worth knowing before trusting any green build over an integral: `MeasureTheory.integral_undef` makes the Bochner integral **equal to zero off `Integrable`**. A formalisation that quietly omits integrability does not fail — it compiles and proves a statement about the value $0$. This module routes the proof through `integral_add`, which *demands* both integrability arguments, so the same statement with `hnoise` removed fails with `unsolved goals` and pulls `sorryAx`. That negative control is what makes the green build meaningful.
 
 ## Build
 
