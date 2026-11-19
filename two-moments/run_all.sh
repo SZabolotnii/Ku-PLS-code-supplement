@@ -35,6 +35,8 @@ code   run_size_confirm            a2_size_confirm
 code   run_inference_pilot         a2_pilot_inference
 code   run_dependence              dependence
 code   run_theta_selector          theta_selector
+code   cap_probe                   cap_probe
+code   robust_competitors          robust_competitors
 gates  a0_1_bounded_test_function  a0_1_bounded_test_function
 gates  a0_3_bounded_feature_family a0_3_bounded_feature_family
 gates  a0_3b_response_side         a0_3b_response_side

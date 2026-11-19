@@ -1,9 +1,14 @@
-# Replication package — *Functional Partial Least Squares under Two Moments*
+# Replication package — *Specification Testing in Functional Linear Regression with Heavy-Tailed Predictors*
 
 Code and stored output for every computed number in
 
-> **Functional Partial Least Squares under Two Moments**
+> **Specification Testing in Functional Linear Regression with Heavy-Tailed
+> Predictors: Reweighted Partial Least Squares**
 > Serhii Zabolotnii (ORCID 0000-0003-0242-2234)
+
+Earlier versions of the manuscript circulated as *Functional Partial Least
+Squares under Two Moments*; the package is the same one, extended by Table 7
+(robust competitors).
 
 This is the second paper of the project. The first one — the moment-free
 characteristic-function route — is the other half of this repository
@@ -31,15 +36,18 @@ git diff --stat results/  # what moved
 Every script writes its own `results/<name>.json`, and `run_all.sh` captures its
 stdout to the matching `results/<name>.out`. Both are committed here as they
 were when the paper was written, so a fresh run is a diff, not a comparison by
-eye. Seeds are fixed inside each script. One line per artifact will always
-differ: each script closes by printing the absolute path it wrote to, and the
-stored copies carry that path rewritten to `two-moments/…`.
+eye. Seeds are fixed inside each script. In most `.out` files one line will
+always differ: those scripts close by printing the absolute path they wrote to,
+and the stored copies carry that path rewritten to `two-moments/…`.
+`robust_competitors.py` prints a relative path and `cap_probe.py` prints none,
+so their output reproduces as stored.
 
 Any single script also runs on its own, from anywhere:
 
 ```bash
-python code/split_rule_tables.py      # Tables 7 and 8
+python code/split_rule_tables.py      # Tables 8 and 9
 python gates/a1_7_power_confirm.py    # Table 6
+python code/robust_competitors.py     # Table 7 (about 2-4 minutes)
 ```
 
 ## Layout
@@ -66,11 +74,12 @@ are libraries; everything else is a script with a `__main__`.
 | 4 | Calibration of $\kappa$ | `gates/a3_kappa_recalibrate.py`, `gates/a3_kappa_phi_sensitivity.py` | `a3_kappa_recalibrate`, `a3_kappa_phi_sensitivity` |
 | 5 | Margins of the three selections | `gates/a3_kappa_margin.py` | `a3_kappa_margin` |
 | 6 | Size and power below tail index two | `gates/a1_7_power_confirm.py` | `a1_7_power_confirm` |
-| 7 | Estimation error at $n=1000$ | `code/split_rule_tables.py` | `split_rule_tables` |
-| 8 | Estimation error at tail index 1.5 across $n$ | `code/split_rule_tables.py` | `split_rule_tables` |
-| 9 | The two stopping thresholds compared | `code/split_stopping_rule.py` (part D) | `split_stopping_rule` |
-| 10 | Commercial paper against VIX, bootstrap null | `code/empirical2_blockboot.py` | `empirical2_blockboot` |
-| 11 | What the rule picks on the applications | `code/selector_on_applications.py` | `selector_on_applications` |
+| 7 | Robust competitors: size and power | `code/robust_competitors.py` | `robust_competitors` |
+| 8 | Estimation error at $n=1000$ | `code/split_rule_tables.py` | `split_rule_tables` |
+| 9 | Estimation error at tail index 1.5 across $n$ | `code/split_rule_tables.py` | `split_rule_tables` |
+| 10 | The two stopping thresholds compared | `code/split_stopping_rule.py` (part D) | `split_stopping_rule` |
+| 11 | Commercial paper against VIX, bootstrap null | `code/empirical2_blockboot.py` | `empirical2_blockboot` |
+| 12 | What the rule picks on the applications | `code/selector_on_applications.py` | `selector_on_applications` |
 | A.1 | Off-diagonal mass under the two hypotheses | `code/section43_hypotheses.py` | `section43_hypotheses` |
 | A.2 | Shrinkage factors on the population diagonal | `code/shrink_table.py` | `shrink_table` |
 
@@ -90,7 +99,7 @@ Two of the paper's tables were produced by interactive drivers that were not
 retained. Both now have one, and the tables print what the shipped script
 returns:
 
-- **Table 11** ← `code/selector_on_applications.py`. The deterministic half
+- **Table 12** ← `code/selector_on_applications.py`. The deterministic half
   reproduced the lost run exactly: $R_n(\theta)$ agrees to every digit recorded
   in `results/selector_recalibrated.json`, and so does every pick. The test at
   $\hat\theta$ is Monte Carlo — 20,000 weighted-$\chi^2$ draws and 999 bootstrap

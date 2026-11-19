@@ -13,7 +13,9 @@ weak moment conditions, by Serhii Zabolotnii (ORCID 0000-0003-0242-2234).
 > An empirical-characteristic-function operator, so that a specification test
 > needs no moment of the predictor at all.
 >
-> **Paper 2 — *Functional Partial Least Squares under Two Moments*.**
+> **Paper 2 — *Specification Testing in Functional Linear Regression with
+> Heavy-Tailed Predictors: Reweighted Partial Least Squares*** (earlier
+> versions: *Functional Partial Least Squares under Two Moments*).
 > A reweighted family $A_\theta=\mathbb E[\lVert X\rVert^{-\theta}X\otimes X]$
 > that contains the second-moment baseline at $\theta=0$ and the spatial-sign
 > covariance at $\theta=2$, and a rule for choosing $\theta$ from the data.

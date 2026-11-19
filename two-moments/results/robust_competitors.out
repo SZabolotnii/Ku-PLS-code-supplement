@@ -1,0 +1,11 @@
+E1 index 1.2  theta0=0.0553  theta1=0.0604  theta2=0.0887  prm=0.0540
+E1 index 1.5  theta0=0.0649  theta1=0.0677  theta2=0.0929  prm=0.0609
+E1 index 1.8  theta0=0.0717  theta1=0.0745  theta2=0.0972  prm=0.0653
+E1 index 2.5  theta0=0.0766  theta1=0.0846  theta2=0.1000  prm=0.0759
+E1 index 3.0  theta0=0.0799  theta1=0.0862  theta2=0.1017  prm=0.0814
+E2 index 1.2  robust_wald: 0.630/1.000  O_theta0: 0.016/0.292  O_theta1: 0.040/0.905  m3_theta0: 0.080/0.973  m3_theta1: 0.028/0.997
+E2 index 1.5  robust_wald: 0.446/0.998  O_theta0: 0.030/0.497  O_theta1: 0.052/0.921  m3_theta0: 0.141/0.989  m3_theta1: 0.044/0.941
+E2 index 1.8  robust_wald: 0.272/0.976  O_theta0: 0.033/0.666  O_theta1: 0.050/0.781  m3_theta0: 0.138/0.982  m3_theta1: 0.032/0.775
+E2 index 3.0  robust_wald: 0.073/0.514  O_theta0: 0.044/0.602  O_theta1: 0.046/0.474  m3_theta0: 0.055/0.656  m3_theta1: 0.039/0.451
+calibration check (robust Wald size, H0): index50=0.050  index8=0.060  gaussian=0.059
+wrote results/robust_competitors.json  (241.7 s)
