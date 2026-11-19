@@ -1,0 +1,22 @@
+{
+  "title": "Ku-PLS code supplement: replication packages and Lean proofs for two papers on functional partial least squares",
+  "upload_type": "software",
+  "description": "<p>Code supplement for two papers on functional partial least squares under heavy-tailed predictors.</p><ul><li><code>two-moments/</code>: Python replication package for <em>Specification Testing in Functional Linear Regression with Heavy-Tailed Predictors: Reweighted Partial Least Squares</em> (earlier versions: <em>Functional Partial Least Squares under Two Moments</em>). Every simulation, both applications, the checks behind each claim, the stored output of every run and the cached FRED panels; the README maps each table to its script.</li><li><code>replication/</code>: Python replication for <em>Moment-Free Inference for Functional Partial Least Squares</em>.</li><li><code>KuPLS/</code>: Lean 4 / Mathlib development certifying the deterministic algebraic facts both papers rely on.</li></ul><p>Requirements: numpy and scipy for the Python packages; elan/lake for the Lean development.</p>",
+  "creators": [
+    {
+      "name": "Zabolotnii, Serhii",
+      "orcid": "0000-0003-0242-2234",
+      "affiliation": "Cherkasy State Business College, Cherkasy, Ukraine"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "functional linear regression",
+    "partial least squares",
+    "heavy tails",
+    "specification testing",
+    "spatial sign",
+    "replication package",
+    "Lean 4"
+  ]
+}
